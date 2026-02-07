@@ -1,2 +1,2 @@
 # HeatEquation
-Two-dimensional finite element analysis of heat equasion.
+Two-dimensional finite element modeling of heat equasion.
