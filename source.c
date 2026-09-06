@@ -1,19 +1,19 @@
-/* ********************************************* */
-/* Coded by Takuro TOKUNAGA                      */
-/* 2D heat conduction equation solved by FEM     */
-/* Liner interpolation                           */
-/* For final project of Adv. Conduction class    */
-/* Last Modified: March 14, 2017                 */
-/* About this code:                              */
-/* required files:                               */
-/* 1. rectangle1.msh: number of coord and nord   */
-/* 2. rectangle2.msh: cord information           */
-/* 3. rectangle3.msh: nord information           */
-/* 4. parameters.txt                             */
-/* 5. rectangle-t.bc                             */
-/* 6. rectangle-num.bc                           */
-/* 7. rectangle-n.bc                             */
-/* ********************************************* */
+/* ************************************************************************ */
+/* Coded by Takuro Tokunaga                                                 */
+/* Two-dimensional heat conduction equation solved by Finite Element Method */
+/* Liner interpolation                                                      */
+/* Last Modified: March 14, 2017                                            */
+/* Updated: September 06, 2026                                              */
+/* About this code:                                                         */
+/* required files:                                                          */
+/* 1. rectangle1.msh: number of coord and nord                              */
+/* 2. rectangle2.msh: cord information                                      */
+/* 3. rectangle3.msh: nord information                                      */
+/* 4. parameters.txt                                                        */
+/* 5. rectangle-t.bc                                                        */
+/* 6. rectangle-num.bc                                                      */
+/* 7. rectangle-n.bc                                                        */
+/* ************************************************************************ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -23,10 +23,9 @@
 
 #define size0 3
 #define size1 2
-/* Need change here when change mesh */
-#define nmax 191 /* 286 + 1 */
-#define emax 325 /* 500 + 1 */
-
+/* Need to change here when change mesh */
+#define nmax 191 /* 190 + 1 */
+#define emax 325 /* 324 + 1 */
 #define bcmax1 54
 #define bcmax2 50
 #define bcmax3 50
@@ -38,8 +37,6 @@
 void start();
 void end();
 void check();
-void debug();
-
 
 /* main program */
 int main(void)
@@ -657,9 +654,4 @@ void end()
 void check()
 {
 	printf("proceeding..\n");	
-}
-
-void debug()
-{
-	printf("Debugging\n\n");	
 }
