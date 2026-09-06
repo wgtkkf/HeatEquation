@@ -24,10 +24,10 @@
 #define size0 3
 #define size1 2
 /* Need change here when change mesh */
-#define nmax 287 /* 286 + 1 */
-#define emax 501 /* 500 + 1 */
+#define nmax 191 /* 286 + 1 */
+#define emax 325 /* 500 + 1 */
 
-#define bcmax1 50
+#define bcmax1 54
 #define bcmax2 50
 #define bcmax3 50
 #define bcmax4 50
@@ -38,6 +38,8 @@
 void start();
 void end();
 void check();
+void debug();
+
 
 /* main program */
 int main(void)
@@ -46,7 +48,7 @@ int main(void)
 	int i, j, k, n;
 	int counter=0;
 	int stepnum=0;
-	double time, tmax=0.001;
+	double time, tmax=0.5;
 	
 	/* matrixs */
 	double area, area2, a2, area3, area12;
@@ -133,7 +135,7 @@ int main(void)
 	
 	/* start of the main program */
 	start();
-	stime=clock();
+	stime=clock();		
 
 	/* 1. read the parameters for newton flow */
 	fp0=fopen("parameters.txt","r");
@@ -141,7 +143,7 @@ int main(void)
 	{
 		printf("failure\n");
         return -1;
-	}
+	}	
 		
 	fscanf(fp0,"%lf",&lambda);
 	fscanf(fp0,"%lf",&rho);
@@ -512,7 +514,7 @@ int main(void)
 			{
 				
 				/* 7. output of the result step0 */
-				sprintf(filename,"./data/step%d.vtk",stepnum);
+				sprintf(filename,"./vtk/step%d.vtk",stepnum);
                 /* output of the result step0 excel */
                 sprintf(filename1,"./excel/excel.dat");
                 
@@ -569,7 +571,7 @@ int main(void)
 			{
 								
 				/* 7. output of the result */
-				sprintf(filename,"./data/step%d.vtk",stepnum);
+				sprintf(filename,"./vtk/step%d.vtk",stepnum);
 							
 				/* 7.1 creation of files */
                 if((fp=fopen(filename, "w"))==NULL){
@@ -584,7 +586,7 @@ int main(void)
 				/* 7.2 write words to files */
 				/* format of PARAVIEW */
 				 fprintf(fp, "# vtk DataFile Version 2.0\n");
-				 fprintf(fp, "velosity\n");
+				 fprintf(fp, "temperature\n");
 				 fprintf(fp, "ASCII\n");
 				 fprintf(fp, "DATASET UNSTRUCTURED_GRID\n");
 				 fprintf(fp, "POINTS %d float\n", np);
@@ -614,7 +616,7 @@ int main(void)
                 
                 for(i=1;i<=np;i++)
                 {
-                    fprintf(fp, "%lf\n", t1[i]);
+                    fprintf(fp, "%lf\n", t1[i]);					
                 }
                 fprintf(fp, "CELL_DATA %d\n", ne);
                 
@@ -655,4 +657,9 @@ void end()
 void check()
 {
 	printf("proceeding..\n");	
+}
+
+void debug()
+{
+	printf("Debugging\n\n");	
 }
