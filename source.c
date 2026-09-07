@@ -36,7 +36,6 @@
 
 void start();
 void end();
-void check();
 
 /* main program */
 int main(void)
@@ -93,23 +92,7 @@ int main(void)
     double t11=0;
 		
 	/* cg method */
-	double r[nmax];
-	double p[nmax];
-	double vectorb[nmax];
-	double b2;
-	double eps, eps1, eps2;
-	double delta;
-	int kend, icount;
-	double ap[nmax];
-	double rur0, rur1;
-	double res2;
-	double pap;
-	double alpha;
-	double beta;
-	double v0, v1;
-	double tmp;
-	double vmean;
-	double res;
+	double vmean;	
 	
 	double nbcn;
 	double nnbcn[bcmax][size1]={};/* check the size of table */
@@ -649,9 +632,4 @@ void start()
 void end()
 {
 	printf("end of the calculation\n");	
-}
-
-void check()
-{
-	printf("proceeding..\n");	
 }
