@@ -1,12 +1,10 @@
 """
-Coded by: Takuro TOKUNAGA, u1053018
-Python version: 3.5.0
-Last modified: 2017, April, 19
+Coded by: Takuro Tokunaga
 Separation of variables
+Last modified: April, 19, 2017
+Updated: September 7, 2026
 """
-import os
 import math
-import cmath
 import numpy
 
 # parametres
