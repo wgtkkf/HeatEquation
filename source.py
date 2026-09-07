@@ -67,7 +67,7 @@ for i in range(0, imax):
 
 y = 0
 # output for folder
-f = open("./data/data.txt","w")
+f = open("./excel/analytical.txt","w")
 f.write("y temp\n")
 for i in range(0, imax):
 	f.write(str(y))
