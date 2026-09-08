@@ -5,75 +5,95 @@ Last modified: April, 19, 2017
 Updated: September 7, 2026
 """
 import math
-import numpy
 
-# parametres
-# summation
-n = 1
-nmax = 100
-imax = 100
+class Comments:
+    def __init__(self, comment1, comment2):
+        self.com1 = comment1
+        self.com2 = comment2
 
-# temperature
-t1 = 0
-t2 = 50
-t3 = 100
-tsteady = [0 for i in range(imax)]
-t1steady = [0 for i in range(imax)]
-t2steady = [0 for i in range(imax)]
-t3steady = [0 for i in range(imax)]
+    def begin(self):
+        print ("### " + str(self.com1)  + "     ###")
 
-# eigenvalue
-ln1 = 0
-ln2 = 0
+    def end(self):
+        print ("### " + str(self.com2)  + "   ###")
 
-# dimensions
-w = 50*pow(10,-3)
-l = 100*pow(10,-3)
+class WriteToText:
+    def __init__(self, filepath: str, header: str):
+        self.filepath = filepath
+        self.header = header
 
-# coordination
-x =  0.092# change here
-ymax = w
-y = 0
-dy = w/imax
+    def output(self, data_array, y_start, dy):
+        with open(self.filepath, "w") as f:
+            f.write(f"{self.header}\n")
+            
+            y = y_start
+            for value in data_array:
+                f.write(f"{y} {value}\n")
+                y += dy
 
-# coefficient
-c3 = (2*t3)/math.pi
-c2 = (2*t2)/math.pi
+class Analytical:
+    # constant parametres    
+    N = 1
+    NMAX = 100
+    IMAX = 100
+        
+    # fixed temperature
+    T1 = 0
+    T2 = 50
+    T3 = 100
 
-# definition of function
-def start():
-	print("start")
-	
-def finish():
-	print("finish")
-				
-# Main part
-# Start of calculation
-start()
+    def __init__(self, w: float, l: float, x: float):
+        #
+        self.tsteady = [0 for i in range(Analytical.IMAX)]
+        self.t1steady = [0 for i in range(Analytical.IMAX)]
+        self.t2steady = [0 for i in range(Analytical.IMAX)]
+        self.t3steady = [0 for i in range(Analytical.IMAX)]        
 
-for i in range(0, imax):
-	for n in range(1, nmax):
-		ln1 = (n*math.pi/l) # eigenvalue radian
-		ln2 = (n*math.pi/w) # eigenvalue radian
-		t1steady[i] = t1steady[i] + c3*((pow((-1),n+1)+1)/n)*math.sin(ln1*x)*math.sinh(ln1*y)/math.sinh(ln1*w)
-		t2steady[i] = t2steady[i] + c3*((pow((-1),n+1)+1)/n)*math.sin(ln2*y)*math.sinh(ln2*x)/math.sinh(ln2*l)
-		t3steady[i] = t3steady[i] + c2*(-math.cosh(ln2*l)/math.sinh(ln2*l))*((pow((-1),n+1)+1)/n)*math.sin(ln2*y)*\
-					        ((-math.sinh(ln2*l)/math.cosh(ln2*l))*math.cosh(ln2*x)+math.sinh(ln2*x))
-					      
-	tsteady[i] = t1steady[i] + t2steady[i] + t3steady[i]
-	y = y + dy
+        # dimension        
+        self.w = w
+        self.l = l
+        self.x = x
+      
+    def solution(self):
+        # eigenvalues
+        ln1 = 0
+        ln2 = 0                
+            
+        # coordination        
+        y = 0
+        ymax = self.w
+        dy = self.w/Analytical.IMAX
+            
+        # coefficient        
+        c2 = (2*Analytical.T2)/math.pi                                    
+        c3 = (2*Analytical.T3)/math.pi
+            
+        for i in range(0, Analytical.IMAX):
+            for n in range(1, Analytical.NMAX):
+                ln1 = (n*math.pi/self.l) # eigenvalue radian
+                ln2 = (n*math.pi/self.w) # eigenvalue radian
+                self.t1steady[i] = self.t1steady[i] + c3*((pow((-1),n+1)+1)/n)*math.sin(ln1*self.x)*math.sinh(ln1*y)/math.sinh(ln1*self.w)
+                self.t2steady[i] = self.t2steady[i] + c3*((pow((-1),n+1)+1)/n)*math.sin(ln2*y)*math.sinh(ln2*self.x)/math.sinh(ln2*self.l)
+                self.t3steady[i] = self.t3steady[i] + c2*(-math.cosh(ln2*self.l)/math.sinh(ln2*self.l))*((pow((-1),n+1)+1)/n)*math.sin(ln2*y)*\
+                                        ((-math.sinh(ln2*self.l)/math.cosh(ln2*self.l))*math.cosh(ln2*self.x)+math.sinh(ln2*self.x))
+                                      
+            self.tsteady[i] = self.t1steady[i] + self.t2steady[i] + self.t3steady[i]            
+            y = y + dy
+                  
+        # output for folder
+        export = WriteToText("./excel/analytical.txt", "y temperature")
+        export.output(self.tsteady, y_start=0, dy=dy)        
 
-y = 0
-# output for folder
-f = open("./excel/analytical.txt","w")
-f.write("y temp\n")
-for i in range(0, imax):
-	f.write(str(y))
-	f.write(str(" "))
-	f.write(str(tsteady[i]))
-	f.write("\n")
-	y = y + dy
-f.close()
+def main():
+    # instance
+    msg = Comments('Calculation started.', 'Calculation completed.')            
+    solve = Analytical(50*pow(10,-3), 100*pow(10,-3), 0.092) # dimension of geometry, [m] and x-coordinate to be extracted [m]    
 
-# End of calculation
-finish()
+	# call methods
+    msg.begin()
+    solve.solution()        
+    msg.end()
+
+# --- main routine ---
+if __name__ == '__main__':    
+    main()

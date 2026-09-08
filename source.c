@@ -2,8 +2,6 @@
 /* Coded by Takuro Tokunaga                                                 */
 /* Two-dimensional heat conduction equation solved by Finite Element Method */
 /* Liner interpolation                                                      */
-/* Last Modified: March 14, 2017                                            */
-/* Updated: September 06, 2026                                              */
 /* About this code:                                                         */
 /* required files:                                                          */
 /* 1. rectangle1.msh: number of coord and nord                              */
@@ -13,6 +11,8 @@
 /* 5. rectangle-t.bc                                                        */
 /* 6. rectangle-num.bc                                                      */
 /* 7. rectangle-n.bc                                                        */
+/* Last Modified: March 14, 2017                                            */
+/* Updated: September 06, 2026                                              */
 /* ************************************************************************ */
 
 #include <stdio.h>
