@@ -23,7 +23,8 @@
 
 #define size0 3
 #define size1 2
-/* Need to change here when change mesh */
+
+/* You need to change here when you change mesh */
 #define nmax 191 /* 190 + 1 */
 #define emax 325 /* 324 + 1 */
 #define bcmax1 54
@@ -56,7 +57,7 @@ int main(void)
 	double eb[emax][size0]={}, ec[emax][size0]={};
 	double x1, x2, x3, y1, y2, y3;
 	double emm[emax][size0]={}, ehx[emax][size0][size0]={}, ehy[emax][size0][size0]={}, ess[emax][size0][size0]={};
-	double essxbb[emax][size0][size0]={}, essxbc[emax][size0][size0]={}, essycc[emax][size0][size0]={}, essycb[emax][size0][size0]={};
+	
 	double lmm[nmax]={}, ilmm[nmax]={};
     double ass[emax][3][3]={};
 	double ekx[emax][size0][size0][size0]={}, eky[emax][size0][size0][size0]={};
@@ -267,8 +268,6 @@ int main(void)
 			emm[elem][i] = 0.0;
 			for(j=0;j<size0;j++)
 			{
-				ehx[elem][i][j] = 0.0;
-				ehy[elem][i][j] = 0.0;
 				ess[elem][i][j] = 0.0;
                 ass[elem][i][j] = 0.0;
 				if(i==j)
@@ -276,11 +275,6 @@ int main(void)
 					dd[i][j] = 2.0;
 				}else{
 					dd[i][j] = 1.0;
-				}
-				for(k=0;k<size0;k++)
-				{
-					ekx[elem][i][j][k] = 0.0;
-					eky[elem][i][j][k] = 0.0;
 				}
 			}
 		}
@@ -326,76 +320,7 @@ int main(void)
 		eb[elem][2] = b[2];
 		ec[elem][0] = c[0];
 		ec[elem][1] = c[1];
-		ec[elem][2] = c[2];
-		
-		/* calculation of matrix */
-		/* Hx, Hy */
-		for(i=0;i<size0;i++)
-		{
-			for(j=0;j<size0;j++)
-			{
-				ehx[elem][i][j] = area3*b[j];
-				ehy[elem][i][j] = area3*c[j];
-			}
-		}
-		
-		/* Kxx, Kyy */
-		for(i=0;i<size0;i++)
-		{
-			for(j=0;j<size0;j++)
-			{
-				for(k=0;k<size0;k++)
-				{
-					ekx[elem][i][j][k] = area12*dd[i][j]*b[k];
-					eky[elem][i][j][k] = area12*dd[i][j]*c[k];
-				}
-			}
-		}
-		
-		/* S */
-		for(i=0;i<size0;i++)
-		{
-			for(j=0;j<size0;j++)
-			{
-				ess[elem][i][j] = area*(b[i]*b[j]+c[i]*c[j]);
-			}
-		}
-		
-		/* Sxbb */
-		for(i=0;i<size0;i++)
-		{
-			for(j=0;j<size0;j++)
-			{
-				essxbb[elem][i][j] = 2*area*(b[i]*b[j]);
-			}
-		}
-
-		/* Sxbc */
-		for(i=0;i<size0;i++)
-		{
-			for(j=0;j<size0;j++)
-			{
-				essxbc[elem][i][j] = area*(b[i]*c[j]);
-			}
-		}
-				
-		/* Sycc */
-		for(i=0;i<size0;i++)
-		{
-			for(j=0;j<size0;j++)
-			{
-				essycc[elem][i][j] = 2*area*(c[i]*c[j]);
-			}
-		}
-		
-		/* Sycb */
-		for(i=0;i<size0;i++)
-		{
-			for(j=0;j<size0;j++)
-			{
-				essycb[elem][i][j] = area*(c[i]*b[j]);
-			}
-		}
+		ec[elem][2] = c[2];			
         
         /* A */
         for(i=0;i<size0;i++)
@@ -420,13 +345,10 @@ int main(void)
 	for(i=1;i<=np;i++)
 	{
 		ilmm[i] = 1.0/lmm[i];
-	}	
-		
-	/* start calculation */
+	}		
+    
+    /* 4. start time loop */    
 	start();
-    
-    /* 4. start time loop */
-    
     /* coefficient */
     c1 = (lambda*dt)/(rho*shc);
 	while(time<=tmax){
@@ -461,8 +383,7 @@ int main(void)
         for(i=1;i<=nbc1;i++)
         {
             tt0[(int)nnbc1[i]] = 0.0;
-        }
-        
+        }        
 		
 		/* boundary condition */
 		for(i=1;i<=nbc1;i++)
@@ -484,11 +405,7 @@ int main(void)
         
         
         if(time<tmax)
-		{
-            
-			/* format of AVese */		
-			d = div(stepnum, 500);
-			
+		{            			
 			/* write to files */
 			if(stepnum==0)
 			{
@@ -626,10 +543,10 @@ int main(void)
 /* functions */
 void start()
 {
-	printf("start of the calculation\n\n");	
+	printf("start\n\n");	
 }
 
 void end()
 {
-	printf("end of the calculation\n");	
+	printf("end\n");	
 }
