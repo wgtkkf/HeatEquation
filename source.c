@@ -347,8 +347,7 @@ int main(void)
 		ilmm[i] = 1.0/lmm[i];
 	}		
     
-    /* 4. start time loop */    
-	start();
+    /* 4. start time loop */ 	
     /* coefficient */
     c1 = (lambda*dt)/(rho*shc);
 	while(time<=tmax){
