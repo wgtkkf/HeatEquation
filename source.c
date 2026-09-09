@@ -48,7 +48,8 @@ int main(void)
 	double time, tmax=0.5;
 	
 	/* matrixs */
-	double area, area2, a2, area3, area12;
+	double area, area2, a2, area3;
+	/* up to here, Sept. 8th, 2026 */
 	int n1, n2, n3;
     int elem;
     double nop[emax][size0]={};
@@ -304,8 +305,7 @@ int main(void)
 		}
 		
 		a2 = 1/area2;
-		area3 = area/3;
-		area12 = area/12;
+		area3 = area/3;		
 						
 		/* differential of shape function */
 		b[0] = (y2-y3)*a2;
