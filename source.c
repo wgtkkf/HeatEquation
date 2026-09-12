@@ -45,11 +45,12 @@ int main(void)
 	int i, j, k, n;
 	int counter=0;
 	int stepnum=0;
-	double time, tmax=0.5;
+
+	double time, tmax=0.5; /* time */
+	double dt;
 	
 	/* matrixs */
-	double area, area2, a2, area3;
-	/* up to here, Sept. 8th, 2026 */
+	double area, area2, a2, area3;	
 	int n1, n2, n3;
     int elem;
     double nop[emax][size0]={};
@@ -57,19 +58,17 @@ int main(void)
 	double b[size0]={}, c[size0]={}, dd[size0][size0]={};
 	double eb[emax][size0]={}, ec[emax][size0]={};
 	double x1, x2, x3, y1, y2, y3;
-	double emm[emax][size0]={}, ehx[emax][size0][size0]={}, ehy[emax][size0][size0]={}, ess[emax][size0][size0]={};
 	
+	double emm[emax][size0]={};	
 	double lmm[nmax]={}, ilmm[nmax]={};
-    double ass[emax][3][3]={};
-	double ekx[emax][size0][size0][size0]={}, eky[emax][size0][size0][size0]={};
+    double ass[emax][3][3]={};	
 		
 	double nbc1, nnbc1[bcmax1];
 	double nbc2, nnbc2[bcmax2];
 	double nbc3, nnbc3[bcmax3];
 	double nbc4, nnbc4[bcmax4];
 	double nbc5, nnbc5[bcmax5];
-	double nbc6, nnbc6[bcmax6];
-	double vbc1[bcmax1], vbc2[bcmax2], vbc3[bcmax3], vbc4[bcmax4], vbc5[bcmax5], vbc6[bcmax6];
+	double nbc6, nnbc6[bcmax6];	
     double tbc1[bcmax1];
 		
 	/* Parameters for heat conduction equation */
@@ -83,8 +82,7 @@ int main(void)
 	FILE *fp1, *fp2, *fp3, *fp4, *fp5, *fp6;
 	char s[20];
 	int np;
-	int ne;
-	double dt;
+	int ne;	
     
     /* temperature */
     double t0[nmax]={};
@@ -101,8 +99,7 @@ int main(void)
 	double vbcn[bcmax];           /* check the size of table */
 	
 	int N, M, PG;
-	double LL;
-	
+	double LL;	
 	double std = 10E-8;/* convergence */
 	
 	/* output file */
@@ -185,12 +182,7 @@ int main(void)
 	for(i=1;i<=ne;i++)
 	{
 		fscanf(fp3, "%d %lf %lf %lf", &n, &nop[i][0], &nop[i][1], &nop[i][2]);
-	}
-    printf("test output\n");
-    
-    fclose(fp1);
-	fclose(fp2);
-	fclose(fp3);
+	}    
 
 	/* 3. read the initial conditions */
 	/* initialize */
@@ -256,6 +248,10 @@ int main(void)
 		LL = sqrt(pow((x1-x2),2) + pow((y1-y2),2));
 		vbcn[i] = PG*LL;
 	}
+	
+	fclose(fp1);
+	fclose(fp2);
+	fclose(fp3);
 	fclose(fp4);
 	fclose(fp5);
 	fclose(fp6);
@@ -269,7 +265,6 @@ int main(void)
 			emm[elem][i] = 0.0;
 			for(j=0;j<size0;j++)
 			{
-				ess[elem][i][j] = 0.0;
                 ass[elem][i][j] = 0.0;
 				if(i==j)
 				{
@@ -359,7 +354,6 @@ int main(void)
 		
         /* 5. calculate temperature */
         /* calculate r.h.s temperature (T) */
-
 		for(i=1;i<=np;i++)
 		{
             /* initialization */
@@ -378,6 +372,7 @@ int main(void)
                 }
             }
         }
+
         /* boundary condition */
         for(i=1;i<=nbc1;i++)
         {
@@ -400,15 +395,13 @@ int main(void)
         for(i=1;i<=np;i++)
         {
             t0[i] = t1[i];
-        }
-        
+        }        
         
         if(time<tmax)
 		{            			
 			/* write to files */
 			if(stepnum==0)
-			{
-				
+			{				
 				/* 7. output of the result step0 */
 				sprintf(filename,"./vtk/step%d.vtk",stepnum);
                 /* output of the result step0 excel */
@@ -436,6 +429,7 @@ int main(void)
 				{
 					fprintf(fp, "%lf %lf 0.0\n", cord[i][0], cord[i][1]);
 				}
+				
 				/* nord information */
 				fprintf(fp, "CELLS %d %d\n", ne, 4*(emax-1));
 				for(i=1;i<=ne;i++)
@@ -464,8 +458,7 @@ int main(void)
                 fprintf(fp_excel, "%d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", stepnum, time, t1[91], t1[92],t1[93], t1[94], t1[95], t1[96], t1[97], t1[98], t1[99],t1[100]);
             
 			}else if(stepnum>0)
-			{
-								
+			{								
 				/* 7. output of the result */
 				sprintf(filename,"./vtk/step%d.vtk",stepnum);
 							
@@ -481,11 +474,11 @@ int main(void)
                 
 				/* 7.2 write words to files */
 				/* format of PARAVIEW */
-				 fprintf(fp, "# vtk DataFile Version 2.0\n");
-				 fprintf(fp, "temperature\n");
-				 fprintf(fp, "ASCII\n");
-				 fprintf(fp, "DATASET UNSTRUCTURED_GRID\n");
-				 fprintf(fp, "POINTS %d float\n", np);
+				fprintf(fp, "# vtk DataFile Version 2.0\n");
+				fprintf(fp, "temperature\n");
+				fprintf(fp, "ASCII\n");
+				fprintf(fp, "DATASET UNSTRUCTURED_GRID\n");
+				fprintf(fp, "POINTS %d float\n", np);
                 
 				/* cord information */
 				for(i=1;i<=np;i++)
@@ -527,7 +520,7 @@ int main(void)
 			time = time + dt;
 
 			/* proceed the step */
-            printf("step:%d\n", stepnum);
+            /*printf("step:%d\n", stepnum);*/
 			stepnum++;
 		}
     }
@@ -542,7 +535,7 @@ int main(void)
 /* functions */
 void start()
 {
-	printf("start\n\n");	
+	printf("start\n");	
 }
 
 void end()
