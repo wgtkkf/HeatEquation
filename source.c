@@ -3,7 +3,7 @@
 /* Two-dimensional heat conduction equation solved by Finite Element Method */
 /* Liner interpolation                                                      */
 /* About this code:                                                         */
-/* required files:                                                          */
+/* Required files:                                                          */
 /* 1. rectangle1.msh: number of coord and nord                              */
 /* 2. rectangle2.msh: cord information                                      */
 /* 3. rectangle3.msh: nord information                                      */
@@ -35,7 +35,6 @@
 #define bcmax6 50
 #define bcmax  50
 
-void start();
 void end();
 
 /* main program */
@@ -45,7 +44,6 @@ int main(void)
 	int i, j, k, n;
 	int counter=0;
 	int stepnum=0;
-
 	double time, tmax=0.5; /* time */
 	double dt;
 	
@@ -58,7 +56,6 @@ int main(void)
 	double b[size0]={}, c[size0]={}, dd[size0][size0]={};
 	double eb[emax][size0]={}, ec[emax][size0]={};
 	double x1, x2, x3, y1, y2, y3;
-	
 	double emm[emax][size0]={};	
 	double lmm[nmax]={}, ilmm[nmax]={};
     double ass[emax][3][3]={};	
@@ -92,8 +89,7 @@ int main(void)
     double t11=0;
 		
 	/* cg method */
-	double vmean;	
-	
+	double vmean;		
 	double nbcn;
 	double nnbcn[bcmax][size1]={};/* check the size of table */
 	double vbcn[bcmax];           /* check the size of table */
@@ -112,8 +108,7 @@ int main(void)
 	/* cpu time */
 	clock_t stime, ftime;
 	
-	/* start of the main program */
-	start();
+	/* start of the main program */	
 	stime=clock();		
 
 	/* 1. read the parameters for newton flow */
@@ -455,8 +450,7 @@ int main(void)
 				fprintf(fp, "CELL_DATA %d\n", ne);
                 
                 /* excel data */
-                fprintf(fp_excel, "%d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", stepnum, time, t1[91], t1[92],t1[93], t1[94], t1[95], t1[96], t1[97], t1[98], t1[99],t1[100]);
-            
+                fprintf(fp_excel, "%d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", stepnum, time, t1[91], t1[92],t1[93], t1[94], t1[95], t1[96], t1[97], t1[98], t1[99],t1[100]);            
 			}else if(stepnum>0)
 			{								
 				/* 7. output of the result */
@@ -530,12 +524,6 @@ int main(void)
 	printf("%lf second\n", (double)(ftime-stime)/(double)CLOCKS_PER_SEC);
 	end();
 	return 0;
-}
-
-/* functions */
-void start()
-{
-	printf("start\n");	
 }
 
 void end()
