@@ -20,12 +20,22 @@ cpp_version/
 ├── CMakeLists.txt       # 
 ├── Dockerfile           # 
 ├── include/             # .hpp files
+│   ├── Timer.hpp
+│   ├── Inputs.hpp
 │   ├── Mesh.hpp
-│   └── HeatSolver.hpp
+│   ├── Boundary.hpp
+│   ├── Matrix.hpp
+│   ├── Solver.hpp
+│   └── Outputs.hpp      # ParaView visualization
 ├── src/                 # .cpp files
 │   ├── main.cpp         # entry point
+│   ├── Timer.cpp
+│   ├── Inputs.cpp
 │   ├── Mesh.cpp
-│   └── HeatSolver.cpp
+│   ├── Boundary.cpp
+│   ├── Matrix.cpp
+│   ├── Solver.cpp
+│   └── Outputs.cpp
 ├── tests/               #
 │   ├── CMakeLists.txt   #
 │   └── test.cpp
