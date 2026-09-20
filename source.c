@@ -203,19 +203,20 @@ int main(void)
 		return -1;
 	}
 	
-	/* read the number of condition for temperature and N.B.*/
+	/* read the number of condition for temperature and natural boundary condition */
 	fscanf(fp4, "%lf", &nbc1);
 	fscanf(fp4, "%lf", &nbc2);
 	fscanf(fp4, "%lf", &nbc3);
 	fscanf(fp4, "%lf", &nbcn);
 	fscanf(fp4, "%lf", &vmean);
 
-	/* boundary condition for T */
+	/* boundary condition for temperature */
 	for(i=1;i<=(int)nbc1;i++)
 	{
 		fscanf(fp5, "%lf %lf", &nnbc1[i], &tbc1[i]);
 	}
-	/* boundary condition for natural B.C */
+
+	/* natural boundary condition */
 	for(i=1;i<=(int)nbcn;i++)
 	{
 		fscanf(fp6, "%d %d %d", &N, &M, &PG);
