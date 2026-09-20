@@ -1,27 +1,32 @@
-# HeatEquation
+# About this repository
 Two-dimensional finite element modeling of heat equasion.
 
+# Boundary conditions
+Fixed temperature, a schematic is in preparation.
+
+# Analytical solution
+An analytical solution was given by a python script.
+
 # A prerequisit for C-language code
-Create two folders: vtk and excel
+Please create two folders: vtk and excel
 
-# Run
-1. gcc source.c -o source -lm
-2. ./source
+# Run C-language code
+1 gcc source.c -o source -lm
+2 ./source
 
-# C++ code
-
+# C++ version
 ```text
-my_multiphysics_solver/
-├── CMakeLists.txt       # The master instruction manual for how to build the code
-├── Dockerfile           # The container configuration
-├── include/             # ONLY header files (.h or .hpp) go here
+cpp_version/
+├── CMakeLists.txt       # 
+├── Dockerfile           # 
+├── include/             # .hpp files
 │   ├── Mesh.hpp
 │   └── HeatSolver.hpp
-├── src/                 # ONLY implementation files (.cpp) go here
-│   ├── main.cpp         # The entry point that runs the simulation
+├── src/                 # .cpp files
+│   ├── main.cpp         # entry point
 │   ├── Mesh.cpp
 │   └── HeatSolver.cpp
-├── tests/               # Your GoogleTest verification scripts go here
-│   ├── CMakeLists.txt   # A sub-instruction file just for building tests
-│   └── test_heat.cpp
-└── build/               # The "trash can" folder
+├── tests/               #
+│   ├── CMakeLists.txt   #
+│   └── test.cpp
+└── build/               #
