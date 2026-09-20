@@ -1,8 +1,8 @@
 /* ************************************************************************ */
 /* Coded by Takuro Tokunaga                                                 */
 /* Two-dimensional heat conduction equation solved by Finite Element Method */
-/* Liner interpolation                                                      */
 /* About this code:                                                         */
+/* Liner interpolation                                                      */
 /* Required files:                                                          */
 /* 1. rectangle1.msh: number of coord and nord                              */
 /* 2. rectangle2.msh: cord information                                      */
@@ -12,7 +12,7 @@
 /* 6. rectangle-num.bc                                                      */
 /* 7. rectangle-n.bc                                                        */
 /* Last Modified: March 14, 2017                                            */
-/* Updated: September 06, 2026                                              */
+/* Updated: September 19, 2026                                              */
 /* ************************************************************************ */
 
 #include <stdio.h>
@@ -121,8 +121,7 @@ int main(void)
 		
 	fscanf(fp0,"%lf",&lambda);
 	fscanf(fp0,"%lf",&rho);
-	fscanf(fp0,"%lf",&shc);
-	fclose(fp0);
+	fscanf(fp0,"%lf",&shc);	
 		  
 	printf("parameters for heat conduction\n");
     printf("thermal conductivity:%lf\n", lambda);
@@ -244,6 +243,7 @@ int main(void)
 		vbcn[i] = PG*LL;
 	}
 	
+	fclose(fp0);
 	fclose(fp1);
 	fclose(fp2);
 	fclose(fp3);
