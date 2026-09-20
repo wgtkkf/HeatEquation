@@ -11,7 +11,7 @@ An analytical solution was given by a python script.
 Please create two folders: vtk and excel
 
 ## Run C-language code
-1 gcc source.c -o source -lm [space][space]
+1 gcc source.c -o source -lm  
 2 ./source
 
 ## C++ version
