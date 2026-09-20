@@ -25,17 +25,17 @@ cpp_version/
 │   ├── Mesh.hpp
 │   ├── Boundary.hpp
 │   ├── Matrix.hpp
-│   ├── Solver.hpp
-│   └── Outputs.hpp      # ParaView visualization
+│   ├── Solver.hpp      
+│   └── Outputs.hpp      
 ├── src/                 # .cpp files
 │   ├── main.cpp         # entry point
 │   ├── Timer.cpp
 │   ├── Inputs.cpp
 │   ├── Mesh.cpp
 │   ├── Boundary.cpp
-│   ├── Matrix.cpp
-│   ├── Solver.cpp
-│   └── Outputs.cpp
+│   ├── Matrix.cpp       # Element stiffness matrices
+│   ├── Solver.cpp       # Solve
+│   └── Outputs.cpp      # ParaView visualization
 ├── tests/               #
 │   ├── CMakeLists.txt   #
 │   └── test.cpp
