@@ -13,3 +13,11 @@
 /* 7. rectangle-n.bc                                                        */
 /* Updated: September 20, 2026                                              */
 /* ************************************************************************ */
+
+/* g++-13 -std=c++20 -Iinclude source.cpp Input.cpp -o bmt */
+#include "Input.hpp"
+int main(){
+    Input calculation("conduction");
+    calculation.displayParameters();
+    return 0;
+}
