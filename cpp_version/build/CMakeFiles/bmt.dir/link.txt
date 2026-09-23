@@ -1,0 +1,1 @@
+/usr/bin/g++-13 -rdynamic CMakeFiles/bmt.dir/src/source.cpp.o CMakeFiles/bmt.dir/src/Input.cpp.o -o bmt 
