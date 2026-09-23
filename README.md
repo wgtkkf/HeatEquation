@@ -42,7 +42,7 @@ cpp_version/
 └── build/               #
 ```
 
-### C++ version, CMake build
+### CMake
 ```text
 mkdir build
 cd build
@@ -51,7 +51,7 @@ make
 ./bmt
 ```
 
-### C++ version, CMake & Docker
+### CMake & Docker
 ```text
 docker build -t simulation .
 docker run --rm simulation
