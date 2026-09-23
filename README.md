@@ -1,18 +1,18 @@
 ## About this repository
 Two-dimensional finite element modeling of heat equasion.
 
-### Boundary conditions
-Fixed temperature, a schematic is in preparation.
-
-### Analytical solution
-An analytical solution was given by a python script.
-
 ### A prerequisit for C-language code
 Please create two folders: vtk and excel
 
 ### Run C-language code
 1 gcc source.c -o source -lm  
 2 ./source
+
+## Boundary conditions
+Fixed temperature, a schematic is in preparation.
+
+### Analytical solution
+An analytical solution was given by a python script.
 
 ## C++ version
 ```text
