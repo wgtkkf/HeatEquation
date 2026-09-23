@@ -42,7 +42,7 @@ cpp_version/
 └── build/               #
 ```
 
-## C++ version, CMake build
+### C++ version, CMake build
 ```text
 mkdir build
 cd build
