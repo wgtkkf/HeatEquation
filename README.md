@@ -37,6 +37,14 @@ cpp_version/
 │   ├── Solver.cpp       # Solve
 │   └── Outputs.cpp      # ParaView visualization
 ├── tests/               #
-│   ├── CMakeLists.txt   #
-│   └── test.cpp
+│   ├── test1.txt        #
+│   └── test2.cpp
 └── build/               #
+
+### C++ version, CMake build & execution
+```text
+mkdir build
+cd build
+cmake -DCMAKE_CXX_COMPILER=g++-13 ..
+make
+./bmt
