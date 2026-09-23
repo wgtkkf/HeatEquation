@@ -40,6 +40,7 @@ cpp_version/
 │   ├── test1.txt        #
 │   └── test2.cpp
 └── build/               #
+```
 
 ## C++ version, CMake build
 ```text
@@ -48,3 +49,4 @@ cd build
 cmake -DCMAKE_CXX_COMPILER=g++-13 ..
 make
 ./bmt
+```
