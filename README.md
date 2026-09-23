@@ -41,8 +41,6 @@ cpp_version/
 │   └── test2.cpp
 └── build/               #
 
-### C++ version, CMake build & execution
-```text
 mkdir build
 cd build
 cmake -DCMAKE_CXX_COMPILER=g++-13 ..
