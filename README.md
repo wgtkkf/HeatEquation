@@ -50,3 +50,9 @@ cmake -DCMAKE_CXX_COMPILER=g++-13 ..
 make
 ./bmt
 ```
+
+### C++ version, CMake & Docker
+```text
+docker build -t simulation .
+docker run --rm simulation
+```
