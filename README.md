@@ -29,7 +29,7 @@ cpp_version/
 │   ├── Solver.hpp      
 │   └── Outputs.hpp      
 ├── src/                 # .cpp files
-│   ├── main.cpp         # entry point
+│   ├── source.cpp         # entry point
 │   ├── Timer.cpp
 │   ├── Parameter.cpp
 │   ├── Mesh.cpp
