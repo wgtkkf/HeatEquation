@@ -16,8 +16,13 @@
 
 /* g++-13 -std=c++20 -Iinclude src/source.cpp src/Input.cpp -o bmt */
 #include "../include/Parameter.hpp"
+#include "../include/Mesh.hpp"
 int main(){
     Input calculation("conduction");
+    MeshInput mesh("MeshInformation");    
+
     calculation.displayParameters();
+    mesh.displayParameters();
+    
     return 0;
 }

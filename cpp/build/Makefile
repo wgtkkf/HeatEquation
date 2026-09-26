@@ -129,6 +129,30 @@ bmt/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bmt.dir/build.make CMakeFiles/bmt.dir/build
 .PHONY : bmt/fast
 
+src/Mesh.o: src/Mesh.cpp.o
+.PHONY : src/Mesh.o
+
+# target to build an object file
+src/Mesh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bmt.dir/build.make CMakeFiles/bmt.dir/src/Mesh.cpp.o
+.PHONY : src/Mesh.cpp.o
+
+src/Mesh.i: src/Mesh.cpp.i
+.PHONY : src/Mesh.i
+
+# target to preprocess a source file
+src/Mesh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bmt.dir/build.make CMakeFiles/bmt.dir/src/Mesh.cpp.i
+.PHONY : src/Mesh.cpp.i
+
+src/Mesh.s: src/Mesh.cpp.s
+.PHONY : src/Mesh.s
+
+# target to generate assembly for a file
+src/Mesh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bmt.dir/build.make CMakeFiles/bmt.dir/src/Mesh.cpp.s
+.PHONY : src/Mesh.cpp.s
+
 src/Parameter.o: src/Parameter.cpp.o
 .PHONY : src/Parameter.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bmt"
+	@echo "... src/Mesh.o"
+	@echo "... src/Mesh.i"
+	@echo "... src/Mesh.s"
 	@echo "... src/Parameter.o"
 	@echo "... src/Parameter.i"
 	@echo "... src/Parameter.s"

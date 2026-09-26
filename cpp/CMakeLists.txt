@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(bmt
     src/source.cpp
     src/Parameter.cpp
+    src/Mesh.cpp
 )
 
 #
