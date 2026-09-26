@@ -55,6 +55,7 @@ make
 
 Remove all the files in your build folder if the cmake command does not work.
 ```text
+cd build
 rm -rf *
 ```
 
