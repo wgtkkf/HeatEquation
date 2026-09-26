@@ -111,7 +111,7 @@ int main(void)
 	/* start of the main program */	
 	stime=clock();		
 
-	/* 1. read the parameters for newton flow */
+	/* 1. read the parameters for heat equation */
 	fp0=fopen("parameters.txt","r");
 	if(fp0==NULL)
 	{

@@ -1,3 +1,0 @@
-/home/tubuntu/FEM_MyTrials/HeatEquation/cpp_version/build/CMakeFiles/bmt.dir
-/home/tubuntu/FEM_MyTrials/HeatEquation/cpp_version/build/CMakeFiles/edit_cache.dir
-/home/tubuntu/FEM_MyTrials/HeatEquation/cpp_version/build/CMakeFiles/rebuild_cache.dir

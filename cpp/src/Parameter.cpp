@@ -1,4 +1,4 @@
-#include "../include/Input.hpp"
+#include "../include/Parameter.hpp"
 #include <iostream>
 #include <format>
 #include <utility>

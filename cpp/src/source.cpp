@@ -15,7 +15,7 @@
 /* ************************************************************************ */
 
 /* g++-13 -std=c++20 -Iinclude src/source.cpp src/Input.cpp -o bmt */
-#include "../include/Input.hpp"
+#include "../include/Parameter.hpp"
 int main(){
     Input calculation("conduction");
     calculation.displayParameters();

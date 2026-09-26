@@ -21,8 +21,9 @@ cpp_version/
 ├── Dockerfile           # 
 ├── include/             # .hpp files
 │   ├── Timer.hpp
-│   ├── Inputs.hpp
+│   ├── Parameter.hpp
 │   ├── Mesh.hpp
+│   ├── Initial.hpp
 │   ├── Boundary.hpp
 │   ├── Matrix.hpp
 │   ├── Solver.hpp      
@@ -30,8 +31,9 @@ cpp_version/
 ├── src/                 # .cpp files
 │   ├── main.cpp         # entry point
 │   ├── Timer.cpp
-│   ├── Inputs.cpp
+│   ├── Parameter.cpp
 │   ├── Mesh.cpp
+│   ├── Initial.cpp
 │   ├── Boundary.cpp
 │   ├── Matrix.cpp       # Element stiffness matrices
 │   ├── Solver.cpp       # Solve
@@ -49,6 +51,11 @@ cd build
 cmake -DCMAKE_CXX_COMPILER=g++-13 ..
 make
 ./bmt
+```
+
+If the cmake command does not work, remove all the files in your build folder.
+```text
+rm -rf *
 ```
 
 ### CMake & Docker
