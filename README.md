@@ -53,7 +53,7 @@ make
 ./bmt
 ```
 
-If the cmake command does not work, remove all the files in your build folder.
+Remove all the files in your build folder if the cmake command does not work.
 ```text
 rm -rf *
 ```
