@@ -1,13 +1,7 @@
 ## About this repository
 Two-dimensional finite element modeling of heat equasion.
 
-## C-language version
-How to run C-language version
-
-### A prerequisit for C-language code
-Please create two folders: vtk and excel
-
-### Run C-language code
+## C-language version, how to run
 1 gcc source.c -o source -lm  
 2 ./source
 
