@@ -12,16 +12,17 @@
 /* 6. rectangle-num.bc                                                      */
 /* 7. rectangle-n.bc                                                        */
 /* Updated: September 20, 2026                                              */
+/* Updated: September 27, 2026                                              */
 /* ************************************************************************ */
 
 /* g++-13 -std=c++20 -Iinclude src/source.cpp src/Input.cpp -o bmt */
 #include "../include/Parameter.hpp"
 #include "../include/Mesh.hpp"
 int main(){
-    Input calculation("conduction");
-    MeshInput mesh("MeshInformation");    
+    ParameterInput param("Parameter information"); /* instance of a class */
+    MeshInput mesh("Mesh information");            /* instance of a class */
 
-    calculation.displayParameters();
+    param.displayParameters();
     mesh.displayParameters();
     
     return 0;

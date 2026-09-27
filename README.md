@@ -1,6 +1,14 @@
 ## About this repository
 Two-dimensional finite element modeling of heat equasion.
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+# Pre-requisits
+1. Create two folders: vtk and excel
+2. Run: gcc source.c -o source -lm
+=======
+>>>>>>> dev_1
 ### A prerequisit for C-language code
 Please create two folders: vtk and excel
 
@@ -29,7 +37,11 @@ cpp_version/
 │   ├── Solver.hpp      
 │   └── Outputs.hpp      
 ├── src/                 # .cpp files
+<<<<<<< HEAD
 │   ├── source.cpp         # entry point
+=======
+│   ├── source.cpp       # entry point
+>>>>>>> dev_1
 │   ├── Timer.cpp
 │   ├── Parameter.cpp
 │   ├── Mesh.cpp
@@ -41,6 +53,11 @@ cpp_version/
 ├── tests/               #
 │   ├── test1.txt        #
 │   └── test2.cpp
+<<<<<<< HEAD
+=======
+├── inputs/              # external input files
+│   ├── parameters.txt   # 
+>>>>>>> dev_1
 └── build/               #
 ```
 
@@ -63,4 +80,9 @@ rm -rf *
 ```text
 docker build -t simulation .
 docker run --rm simulation
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> Stashed changes
+>>>>>>> dev_1

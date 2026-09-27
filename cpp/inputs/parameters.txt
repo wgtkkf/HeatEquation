@@ -1,0 +1,3 @@
+ThermalConductivity 237
+Density 880
+SpecificHeat 0.27
