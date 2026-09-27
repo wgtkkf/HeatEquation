@@ -37,5 +37,5 @@ void ParameterInput::readParameters(const std::filesystem::path& filepath) {
     }else{
       std::cout << std::format("Warning: unknown parameter '{}' ignored.\n", key);    
     }
-  }
+  }  
 }

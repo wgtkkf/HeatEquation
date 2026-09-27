@@ -14,17 +14,28 @@
 /* Updated: September 20, 2026                                              */
 /* Updated: September 27, 2026                                              */
 /* ************************************************************************ */
-
-/* g++-13 -std=c++20 -Iinclude src/source.cpp src/Input.cpp -o bmt */
+/* For functions */
 #include "../include/Parameter.hpp"
 #include "../include/Mesh.hpp"
+
+/*  */
+#include <format>   /* for format*/
+#include <iostream> /* for std cout*/
+
 int main(){
     ParameterInput param("Parameter information"); /* instance of a class */
     MeshInput mesh("Mesh information");            /* instance of a class */
 
     param.displayParameters();
     mesh.displayParameters();
-    param.readParameters("../inputs/parameters.txt");
+    param.readParameters("../inputs/parameters.txt"); 
+
+    
+    // display parameters    
+    std::cout << std::format("--- Loaded Parameters ---\n");
+    std::cout << std::format("Thermal conductivity: {}\n", param.thermal_conductivity);
+    std::cout << std::format("Density: {}\n", param.density);
+    std::cout << std::format("Specific Heat: {}\n", param.specific_heat);
     
     return 0;
 }
