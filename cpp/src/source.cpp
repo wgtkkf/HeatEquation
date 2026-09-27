@@ -24,6 +24,7 @@ int main(){
 
     param.displayParameters();
     mesh.displayParameters();
+    param.readParameters("../inputs/parameters.txt");
     
     return 0;
 }
