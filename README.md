@@ -1,13 +1,13 @@
 ## About this repository
 Two-dimensional finite element modeling of heat equasion.
 
-## C-language version, how to run
+## C-language version - how to run
 1 gcc source.c -o source -lm  
 2 ./source
 
 ## C++ version
 ```text
-cpp_version/
+cpp/
 ├── CMakeLists.txt       # 
 ├── Dockerfile           # 
 ├── include/             # .hpp files
@@ -58,7 +58,7 @@ docker build -t simulation .
 docker run --rm simulation
 ```
 
-## Caldulations
+## Calculations
 A bit of information about calculation.
 
 ### Boundary conditions
