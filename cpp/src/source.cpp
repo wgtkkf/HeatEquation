@@ -29,6 +29,7 @@ int main(){
     param.displayParameters();
     mesh.displayParameters();
     param.readParameters("../inputs/parameters.txt"); 
+    mesh.readMeshParameters("../inputs/rectangle1.msh"); 
 
     
     // display parameters    
@@ -36,6 +37,12 @@ int main(){
     std::cout << std::format("Thermal conductivity: {}\n", param.thermal_conductivity);
     std::cout << std::format("Density: {}\n", param.density);
     std::cout << std::format("Specific Heat: {}\n", param.specific_heat);
+
+    // display parameters    
+    std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
+    std::cout << std::format("Number of Nodes: {}\n", mesh.np);    
+    std::cout << std::format("Number of Elements: {}\n", mesh.ne);    
+    std::cout << std::format("Time Step: {}\n", mesh.dt);    
     
     return 0;
 }
