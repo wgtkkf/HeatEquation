@@ -30,6 +30,7 @@ int main(){
     mesh.displayParameters();
     param.readParameters("../inputs/parameters.txt"); 
     mesh.readMeshParameters("../inputs/rectangle1.msh"); 
+    mesh.readMeshCoordinates("../inputs/rectangle2.msh"); 
 
     
     // display parameters    
@@ -43,6 +44,9 @@ int main(){
     std::cout << std::format("Number of Nodes: {}\n", mesh.np);    
     std::cout << std::format("Number of Elements: {}\n", mesh.ne);    
     std::cout << std::format("Time Step: {}\n", mesh.dt);    
+
+    // display coordinates
+    mesh.displayCoordinates(mesh.np);
     
     return 0;
 }

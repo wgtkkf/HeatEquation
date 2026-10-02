@@ -3,6 +3,7 @@
 #include <filesystem> // for filesystem
 #include <cstddef> // for std::size_t
 #include <string> // for char variable
+#include <vector> // for vector
 
 class MeshInput{
   private:
@@ -18,6 +19,10 @@ class MeshInput{
     double ne = 0.0; /* elements */
     double dt = 0.0; /* time step */
 
+    // mesh coordination
+    std::vector<double> x_coords;
+    std::vector<double> y_coords;
+
     std::string config_name{""};
 
     // constructor
@@ -27,4 +32,9 @@ class MeshInput{
 
     // read parameters
     void readMeshParameters(const std::filesystem::path& filepath);
+
+    // read x & y coordinates
+    void readMeshCoordinates(const std::filesystem::path& filepath);
+
+    void displayCoordinates(int total_nodes) const; // The 'const' guarantees this method not altering data
 };

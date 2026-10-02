@@ -15,7 +15,7 @@ void MeshInput::displayParameters() const{
     std::cout << std::format("Configuration: {}\n", config_name);
 }
 
-// read parameter.txt
+// read rectangle1.msh
 void MeshInput::readMeshParameters(const std::filesystem::path& filepath) {
   std::ifstream file(filepath);
 
@@ -25,7 +25,6 @@ void MeshInput::readMeshParameters(const std::filesystem::path& filepath) {
   }
 
   std::string key;
-
   // read file by keyword
   while (file >> key){
     if(key=="GeometryShape"){
@@ -40,4 +39,41 @@ void MeshInput::readMeshParameters(const std::filesystem::path& filepath) {
       std::cout << std::format("Warning: unknown parameter '{}' ignored.\n", key);    
     }
   }  
+}
+
+// read rectangle2.msh
+void MeshInput::readMeshCoordinates(const std::filesystem::path& filepath) {
+  std::ifstream file(filepath);
+
+  if (!file.is_open()){
+    std::cerr << std::format("Error: file cannot open {}\n", filepath.string());
+    return;
+  }
+
+  x_coords.resize(np);
+  y_coords.resize(np);
+
+  // temporal parameters
+  int node_id;
+  int current_index = 0;
+  double x, y;
+
+  while (file >> node_id >> x >> y){
+    x_coords[current_index] = x;
+    y_coords[current_index] = y;
+    current_index++;
+
+    if(current_index >= np) break;
+  }
+
+  std::cout << std::format("Successfully loaded x & ycoordinates.\n", current_index);
+}
+
+void MeshInput::displayCoordinates(int total_nodes) const{
+  std::cout << std::format("--- Node Coordinates ---\n");
+
+  for (size_t i=0; i<total_nodes; i++){
+    std::cout << std::format("Node {}: x = {}, y = {}\n", 
+      i + 1, x_coords[i], y_coords[i]);
+  }
 }
