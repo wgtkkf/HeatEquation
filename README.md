@@ -44,7 +44,7 @@ cpp_version/
 │   ├── Solver.cpp       # Solve
 │   └── Outputs.cpp      # ParaView visualization
 ├── tests/               #
-│   ├── test1.txt        #
+│   ├── test1.cpp        #
 │   └── test2.cpp
 ├── inputs/              # external input files
 │   ├── parameters.txt   # 
