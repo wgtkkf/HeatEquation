@@ -106,7 +106,6 @@ void MeshInput::readMeshNodes(const std::filesystem::path& filepath) {
     if(current_index >= ne) break;
   }
 
-<<<<<<< HEAD
   std::cout << std::format("Successfully loaded rectanble3.msh: node information.\n", current_index);
 }
 
@@ -117,7 +116,4 @@ void MeshInput::displayNodes(int total_elements) const{
     std::cout << std::format("Element {}: a = {}, b = {}, c = {}\n", 
       i + 1, nop[i][0], nop[i][1], nop[i][2]);
   }
-=======
-  std::cout << std::format("Successfully loaded x & ycoordinates.\n", current_index);
->>>>>>> f3e1f5e2ab401f2575ee0661bd2ad6606cfb7075
 }
