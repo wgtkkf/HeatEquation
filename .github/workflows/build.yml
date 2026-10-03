@@ -15,4 +15,5 @@ jobs:
     - name: Compile Solver
       run: |
         cd cpp
-        make
+        cmake -B build
+        cmake --build build
