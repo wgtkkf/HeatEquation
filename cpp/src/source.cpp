@@ -27,6 +27,11 @@ int main(){
 =======
     param.readParameters("../inputs/parameters.txt"); 
     mesh.readMeshParameters("../inputs/rectangle1.msh"); 
+<<<<<<< Updated upstream
+=======
+    mesh.readMeshCoordinates("../inputs/rectangle2.msh"); 
+    mesh.readMeshNodes("../inputs/rectangle3.msh"); 
+>>>>>>> Stashed changes
 
     
     // display parameters    
