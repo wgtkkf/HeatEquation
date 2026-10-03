@@ -6,14 +6,14 @@
 #include <vector> // for vector
 
 class MeshInput{
-  private:
-    static constexpr std::size_t size0 = 3;
-    static constexpr std::size_t size1 = 2;    
-
+  private:    
     // input variables
     std::string geometry{};
 
-  public:    
+  public:
+    static constexpr std::size_t size0 = 3;
+    static constexpr std::size_t size1 = 2;    
+
     // input variables
     double np = 0.0; /* nodes */
     double ne = 0.0; /* elements */
@@ -22,6 +22,9 @@ class MeshInput{
     // mesh coordination
     std::vector<double> x_coords;
     std::vector<double> y_coords;
+
+    //  node information of each element
+    std::vector<std::array<double, size0>> nop;
 
     std::string config_name{""};
 
@@ -35,6 +38,9 @@ class MeshInput{
 
     // read x & y coordinates
     void readMeshCoordinates(const std::filesystem::path& filepath);
-
     void displayCoordinates(int total_nodes) const; // The 'const' guarantees this method not altering data
+    
+    // read nodes on each elements
+    void readMeshNodes(const std::filesystem::path& filepath);
+    void displayNodes(int total_nodes) const; // The 'const' guarantees this method not altering data
 };

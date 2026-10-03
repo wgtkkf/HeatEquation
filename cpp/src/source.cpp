@@ -30,8 +30,8 @@ int main(){
     mesh.displayParameters();
     param.readParameters("../inputs/parameters.txt"); 
     mesh.readMeshParameters("../inputs/rectangle1.msh"); 
-    mesh.readMeshCoordinates("../inputs/rectangle2.msh"); 
-
+    mesh.readMeshCoordinates("../inputs/rectangle2.msh");     
+    mesh.readMeshNodes("../inputs/rectangle3.msh");
     
     // display parameters    
     std::cout << std::format("--- Loaded Parameters ---\n");
@@ -47,6 +47,7 @@ int main(){
 
     // display coordinates
     mesh.displayCoordinates(mesh.np);
+    mesh.displayNodes(mesh.ne);
     
     return 0;
 }
