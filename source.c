@@ -1,9 +1,9 @@
 /* ************************************************************************ */
 /* Coded by Takuro Tokunaga                                                 */
 /* Two-dimensional heat conduction equation solved by Finite Element Method */
-/* Liner interpolation                                                      */
 /* About this code:                                                         */
-/* required files:                                                          */
+/* Liner interpolation                                                      */
+/* Required files:                                                          */
 /* 1. rectangle1.msh: number of coord and nord                              */
 /* 2. rectangle2.msh: cord information                                      */
 /* 3. rectangle3.msh: nord information                                      */
@@ -12,7 +12,7 @@
 /* 6. rectangle-num.bc                                                      */
 /* 7. rectangle-n.bc                                                        */
 /* Last Modified: March 14, 2017                                            */
-/* Updated: September 06, 2026                                              */
+/* Updated: September 19, 2026                                              */
 /* ************************************************************************ */
 
 #include <stdio.h>
@@ -35,7 +35,6 @@
 #define bcmax6 50
 #define bcmax  50
 
-void start();
 void end();
 
 /* main program */
@@ -45,7 +44,6 @@ int main(void)
 	int i, j, k, n;
 	int counter=0;
 	int stepnum=0;
-
 	double time, tmax=0.5; /* time */
 	double dt;
 	
@@ -58,7 +56,6 @@ int main(void)
 	double b[size0]={}, c[size0]={}, dd[size0][size0]={};
 	double eb[emax][size0]={}, ec[emax][size0]={};
 	double x1, x2, x3, y1, y2, y3;
-	
 	double emm[emax][size0]={};	
 	double lmm[nmax]={}, ilmm[nmax]={};
     double ass[emax][3][3]={};	
@@ -92,8 +89,7 @@ int main(void)
     double t11=0;
 		
 	/* cg method */
-	double vmean;	
-	
+	double vmean;		
 	double nbcn;
 	double nnbcn[bcmax][size1]={};/* check the size of table */
 	double vbcn[bcmax];           /* check the size of table */
@@ -112,11 +108,10 @@ int main(void)
 	/* cpu time */
 	clock_t stime, ftime;
 	
-	/* start of the main program */
-	start();
+	/* start of the main program */	
 	stime=clock();		
 
-	/* 1. read the parameters for newton flow */
+	/* 1. read the parameters for heat equation */
 	fp0=fopen("parameters.txt","r");
 	if(fp0==NULL)
 	{
@@ -126,8 +121,7 @@ int main(void)
 		
 	fscanf(fp0,"%lf",&lambda);
 	fscanf(fp0,"%lf",&rho);
-	fscanf(fp0,"%lf",&shc);
-	fclose(fp0);
+	fscanf(fp0,"%lf",&shc);	
 		  
 	printf("parameters for heat conduction\n");
     printf("thermal conductivity:%lf\n", lambda);
@@ -209,19 +203,20 @@ int main(void)
 		return -1;
 	}
 	
-	/* read the number of condition for temperature and N.B.*/
+	/* read the number of condition for temperature and natural boundary condition */
 	fscanf(fp4, "%lf", &nbc1);
 	fscanf(fp4, "%lf", &nbc2);
 	fscanf(fp4, "%lf", &nbc3);
 	fscanf(fp4, "%lf", &nbcn);
 	fscanf(fp4, "%lf", &vmean);
 
-	/* boundary condition for T */
+	/* boundary condition for temperature */
 	for(i=1;i<=(int)nbc1;i++)
 	{
 		fscanf(fp5, "%lf %lf", &nnbc1[i], &tbc1[i]);
 	}
-	/* boundary condition for natural B.C */
+
+	/* natural boundary condition */
 	for(i=1;i<=(int)nbcn;i++)
 	{
 		fscanf(fp6, "%d %d %d", &N, &M, &PG);
@@ -249,6 +244,7 @@ int main(void)
 		vbcn[i] = PG*LL;
 	}
 	
+	fclose(fp0);
 	fclose(fp1);
 	fclose(fp2);
 	fclose(fp3);
@@ -455,8 +451,7 @@ int main(void)
 				fprintf(fp, "CELL_DATA %d\n", ne);
                 
                 /* excel data */
-                fprintf(fp_excel, "%d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", stepnum, time, t1[91], t1[92],t1[93], t1[94], t1[95], t1[96], t1[97], t1[98], t1[99],t1[100]);
-            
+                fprintf(fp_excel, "%d %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n", stepnum, time, t1[91], t1[92],t1[93], t1[94], t1[95], t1[96], t1[97], t1[98], t1[99],t1[100]);            
 			}else if(stepnum>0)
 			{								
 				/* 7. output of the result */
@@ -530,12 +525,6 @@ int main(void)
 	printf("%lf second\n", (double)(ftime-stime)/(double)CLOCKS_PER_SEC);
 	end();
 	return 0;
-}
-
-/* functions */
-void start()
-{
-	printf("start\n");	
 }
 
 void end()

@@ -11,28 +11,26 @@
 /* 5. rectangle-t.bc                                                        */
 /* 6. rectangle-num.bc                                                      */
 /* 7. rectangle-n.bc                                                        */
+/* Updated: September 20, 2026                                              */
 /* Updated: September 27, 2026                                              */
 /* ************************************************************************ */
-
-/* g++-13 -std=c++20 -Iinclude src/source.cpp src/Input.cpp -o bmt */
+/* For functions */
 #include "../include/Parameter.hpp"
 #include "../include/Mesh.hpp"
+
+/*  */
+#include <format>   /* for format*/
+#include <iostream> /* for std cout*/
+
 int main(){
     ParameterInput param("Parameter information"); /* instance of a class */
     MeshInput mesh("Mesh information");            /* instance of a class */
 
     param.displayParameters();
     mesh.displayParameters();
-<<<<<<< Updated upstream
-=======
     param.readParameters("../inputs/parameters.txt"); 
     mesh.readMeshParameters("../inputs/rectangle1.msh"); 
-<<<<<<< Updated upstream
-=======
     mesh.readMeshCoordinates("../inputs/rectangle2.msh"); 
-    mesh.readMeshNodes("../inputs/rectangle3.msh"); 
->>>>>>> Stashed changes
-
     
     // display parameters    
     std::cout << std::format("--- Loaded Parameters ---\n");
@@ -40,13 +38,14 @@ int main(){
     std::cout << std::format("Density: {}\n", param.density);
     std::cout << std::format("Specific Heat: {}\n", param.specific_heat);
 
-    
     // display parameters    
     std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
     std::cout << std::format("Number of Nodes: {}\n", mesh.np);    
     std::cout << std::format("Number of Elements: {}\n", mesh.ne);    
-    std::cout << std::format("Time Step: {}\n", mesh.dt);
->>>>>>> Stashed changes
+    std::cout << std::format("Time Step: {}\n", mesh.dt);    
+
+    // display coordinates
+    mesh.displayCoordinates(mesh.np);
     
     return 0;
 }

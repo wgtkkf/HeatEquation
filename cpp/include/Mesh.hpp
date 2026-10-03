@@ -24,7 +24,7 @@ class MeshInput{
     std::vector<double> y_coords;
 
     // nodes on each element
-    std:;vector<double> nop(ne, size0, 0.0);
+    std::vector<double> nop(ne, size0, 0.0);
 
     std::string config_name{""};
 

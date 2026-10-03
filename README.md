@@ -1,27 +1,13 @@
-# HeatEquation
+## About this repository
 Two-dimensional finite element modeling of heat equasion.
 
-<<<<<<< Updated upstream
-# Pre-requisits
-1. Create two folders: vtk and excel
-2. Run: gcc source.c -o source -lm
-=======
-### A prerequisit for C-language code
-Please create two folders: vtk and excel
-
-### Run C-language code
+## C-language version - how to run
 1 gcc source.c -o source -lm  
 2 ./source
 
-## Boundary conditions
-Fixed temperature, a schematic is in preparation.
-
-### Analytical solution
-An analytical solution was given by a python script.
-
 ## C++ version
 ```text
-cpp_version/
+cpp/
 ├── CMakeLists.txt       # 
 ├── Dockerfile           # 
 ├── include/             # .hpp files
@@ -39,7 +25,7 @@ cpp_version/
 │   ├── Parameter.cpp
 │   ├── Mesh.cpp
 │   ├── Initial.cpp
-│   ├── Boundary.cpp
+│   ├── Boundary.cpp     # Boundary conditions: read and apply
 │   ├── Matrix.cpp       # Element stiffness matrices
 │   ├── Solver.cpp       # Solve
 │   └── Outputs.cpp      # ParaView visualization
@@ -71,4 +57,12 @@ rm -rf *
 docker build -t simulation .
 docker run --rm simulation
 ```
->>>>>>> Stashed changes
+
+## Calculations
+A bit of information about calculation.
+
+### Boundary conditions
+Fixed temperature, a schematic is in preparation.
+
+### Analytical solution
+An analytical solution was given by a python script.
