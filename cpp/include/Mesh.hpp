@@ -30,6 +30,7 @@ class MeshInput{
 
     // constructor
     MeshInput(std::string name);
+
     // display
     void displayParameters() const; // const guarantees this function only read data.
 
