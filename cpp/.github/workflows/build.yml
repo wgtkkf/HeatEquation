@@ -1,0 +1,18 @@
+name: C++20 Finite Element Codes Build Test
+
+on:
+  push:
+    branches: ["main", "dev_1"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Repository Code
+      uses: actions/checkout@v4
+
+    - name: Compile Solver
+      run: |
+        cd cpp
+        make
