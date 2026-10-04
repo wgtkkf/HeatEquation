@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: C++20 CI pipeline
 
 on:
   push:
@@ -7,14 +7,12 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  # Job 1: Native Ubuntu Build
+  build-native:
     runs-on: ubuntu-latest
-    
-    # This acts like 'cd cpp' for the entire server
     defaults:
       run:
         working-directory: ./cpp
-
     steps:
       - uses: actions/checkout@v3
 
@@ -28,3 +26,18 @@ jobs:
         run: |
           cd build
           ctest --output-on-failure
+
+  # Job 2: The Docker Build
+  build-docker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./cpp
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build a Docker Image
+        run: docker build -t FEMHeatEquation .
+
+      - name: Run Unit Tests inside Docker
+        run: docker run FEMHeatEquation
