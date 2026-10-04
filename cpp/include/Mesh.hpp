@@ -6,11 +6,11 @@
 #include <vector> // for vector
 
 class MeshInput{
-  private:    
+
+  public:
     // input variables
     std::string geometry{};
 
-  public:
     static constexpr std::size_t size0 = 3;
     static constexpr std::size_t size1 = 2;    
 
@@ -28,6 +28,7 @@ class MeshInput{
 
     std::string config_name{""};
 
+    // Modules
     // constructor
     MeshInput(std::string name);
 

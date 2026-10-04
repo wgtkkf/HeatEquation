@@ -1,0 +1,35 @@
+Start testing: Oct 04 11:00 PDT
+----------------------------------------------------------
+1/1 Testing: UnitTests
+1/1 Test: UnitTests
+Command: "/home/tubuntu/FEM_MyTrials/HeatEquation/cpp/build/run_tests"
+Directory: /home/tubuntu/FEM_MyTrials/HeatEquation/cpp/build
+"UnitTests" start time: Oct 04 11:00 PDT
+Output:
+----------------------------------------------------------
+Running main() from /home/tubuntu/FEM_MyTrials/HeatEquation/cpp/build/_deps/googletest-src/googletest/src/gtest_main.cc
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from MeshInputTest
+[ RUN      ] MeshInputTest.ReadValidMeshParameters
+Warning: unknown parameter 'UnDefinedKeyword' ignored.
+Warning: unknown parameter '999' ignored.
+Successfully loaded rectanble1.msh: node, element, time step.
+[       OK ] MeshInputTest.ReadValidMeshParameters (0 ms)
+[ RUN      ] MeshInputTest.ReadMissingFile
+Error: file cannot open non_existent_file.msh
+[       OK ] MeshInputTest.ReadMissingFile (0 ms)
+[----------] 2 tests from MeshInputTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (0 ms total)
+[  PASSED  ] 2 tests.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"UnitTests" end time: Oct 04 11:00 PDT
+"UnitTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 04 11:00 PDT
