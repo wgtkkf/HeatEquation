@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build a Docker Image
-        run: docker build -t FEMHeatEquation .
+        run: docker build -t fem-heat-equation .
 
       - name: Run Unit Tests inside Docker
-        run: docker run FEMHeatEquation
+        run: docker run fem-heat-equation
