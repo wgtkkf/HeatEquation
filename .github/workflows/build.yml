@@ -1,32 +1,30 @@
-name: C++20 Finite Element Codes Build Test
+name: C/C++ CI
 
 on:
   push:
-    branches: ["main", "dev_1"]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    # This acts like 'cd cpp' for the entire server
+    defaults:
+      run:
+        working-directory: ./cpp
 
     steps:
-    - name: Download Repository Code
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-    - name: Compile Solver
-      run: |
-        cd cpp
-        cmake -B build
-        cmake --build build
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_CXX_COMPILER=g++-13 
 
-    - name: Configure CMake
-      # Force GCC-13 for C++20 <format> support on the runner
-      run: cmake -B build -DCMAKE_CXX_COMPILER=g++-13 
+      - name: Build
+        run: cmake --build build
 
-    - name: Build
-      run: cmake --build build
-
-    # Add this final step!
-    - name: Run Unit Tests
-      run: |
-        cd build
-        ctest --output-on-failure
+      - name: Run Unit Tests
+        run: |
+          cd build
+          ctest --output-on-failure
