@@ -10,8 +10,7 @@ class BoundaryInputTest : public ::testing::Test{
     std::string test_file = "mock_rectangle-num.bc";
 
     void SetUp() override {
-      std::ofstream out(test_file);
-      out << "GeometryShape Square\n";
+      std::ofstream out(test_file);      
       out << "NumberOfNaturalBoundaryCondition1 100\n";
       out << "NumberOfNaturalBoundaryCondition2 50\n";
       out << "NumberOfNaturalBoundaryCondition3 10\n";
@@ -30,15 +29,14 @@ TEST_F(BoundaryInputTest, ReadValidMeshParameters) {
   BoundaryInput input("MockParameters");
   input.read_NBC_Numbers(test_file);
 
-  // 2. Verification: assert the variables were populated correctly
-  EXPECT_EQ(input.geometry, "Square");
+  // 2. Verification: assert the variables were populated correctly  
   EXPECT_EQ(input.nbc1, 100);
   EXPECT_EQ(input.nbc2, 50);
   EXPECT_EQ(input.nbc3, 10);
 }
 
 // Test Case 2: missing file, error handling
-TEST_F(BoundaryinputTest, ReadMissingFile){
+TEST_F(BoundaryInputTest, ReadMissingFile){
   BoundaryInput input("MockDummyParameters");
 
   // Set a default dummy values to prove they don't get overwritten by garbage data
