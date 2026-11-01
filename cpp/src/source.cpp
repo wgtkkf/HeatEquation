@@ -32,7 +32,7 @@ int main(){
     mesh.readMeshParameters("../inputs/rectangle1.msh"); 
     mesh.readMeshCoordinates("../inputs/rectangle2.msh");     
     mesh.readMeshNodes("../inputs/rectangle3.msh");
-    
+
     // display parameters    
     std::cout << std::format("--- Loaded Parameters ---\n");
     std::cout << std::format("Thermal conductivity: {}\n", param.thermal_conductivity);
@@ -43,7 +43,7 @@ int main(){
     std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
     std::cout << std::format("Number of Nodes: {}\n", mesh.np);    
     std::cout << std::format("Number of Elements: {}\n", mesh.ne);    
-    std::cout << std::format("Time Step: {}\n", mesh.dt);    
+    std::cout << std::format("Time Step: {}\n", mesh.dt);            
 
     // display coordinates
     mesh.displayCoordinates(mesh.np);
