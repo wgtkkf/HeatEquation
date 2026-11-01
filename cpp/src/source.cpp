@@ -42,6 +42,8 @@ int main(){
     // bc
     bc.read_NBC_Numbers("../inputs/rectangle-num.bc");
 
+    bc.readFixedTemperature("../inputs/rectangle-t.bc");
+
     // resume from the natural boundary condition, line number 219.
 
     // display parameters    
@@ -63,8 +65,11 @@ int main(){
     std::cout << std::format("Number of Boundary Condition 3: {}\n", bc.nbc3);
 
     // display coordinates
-    mesh.displayCoordinates(mesh.np);
-    mesh.displayNodes(mesh.ne);
+    //mesh.displayCoordinates(mesh.np);
+    //mesh.displayNodes(mesh.ne);
+    
+    // display temperature
+    //bc.displayTemperature();
     
     return 0;
 }
