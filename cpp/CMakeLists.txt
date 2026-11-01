@@ -50,7 +50,9 @@ add_executable(run_tests
 target_link_libraries(run_tests PRIVATE FEMCore GTest::gtest_main)
 
 # Register the test with CMake
-add_test(NAME UnitTests COMMAND run_tests)
+#add_test(NAME UnitTests COMMAND run_tests)
+include(GoogleTest)
+gtest_discover_tests(run_tests)
 
 # ---------------------------------------------------
 # Memo
