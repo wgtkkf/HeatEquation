@@ -5,7 +5,7 @@
 #include "../include/Boundary.hpp"
 
 // 1. Define a Fixture class
-class MeshInputTest : public ::testing::Test{
+class BoundaryInputTest : public ::testing::Test{
   protected:
     std::string test_file = "mock_rectangle-num.bc";
 
@@ -24,7 +24,7 @@ class MeshInputTest : public ::testing::Test{
     }
   };
 
-TEST_F(MeshInputTest, ReadValidMeshParameters) {
+TEST_F(BoundaryInputTest, ReadValidMeshParameters) {
   
   // 1. Execution: run moduls to be tested
   BoundaryInput input("MockParameters");
