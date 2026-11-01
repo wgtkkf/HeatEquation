@@ -12,9 +12,9 @@ class BoundaryInputTest : public ::testing::Test{
     void SetUp() override {
       std::ofstream out(test_file);
       out << "GeometryShape Square\n";
-      out << "NaturalBoundaryConditionNumber1 100\n";
-      out << "NaturalBoundaryConditionNumber2 50\n";
-      out << "NaturalBoundaryConditionNumber3 10\n";
+      out << "NumberOfNaturalBoundaryCondition1 100\n";
+      out << "NumberOfNaturalBoundaryCondition2 50\n";
+      out << "NumberOfNaturalBoundaryCondition3 10\n";
       out.close();
     }
 
