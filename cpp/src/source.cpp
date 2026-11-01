@@ -42,6 +42,8 @@ int main(){
     // bc
     bc.read_NBC_Numbers("../inputs/rectangle-num.bc");
 
+    // resume from the natural boundary condition, line number 219.
+
     // display parameters    
     std::cout << std::format("--- Loaded Parameters ---\n");
     std::cout << std::format("Thermal conductivity: {}\n", param.thermal_conductivity);
@@ -56,9 +58,9 @@ int main(){
     
     // display parameters    
     std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
-    std::cout << std::format("Number of Natural Boundary Condition 1: {}\n", bc.nbc1);    
-    std::cout << std::format("Number of Natural Boundary Condition 2: {}\n", bc.nbc2);    
-    std::cout << std::format("Number of Natural Boundary Condition 3: {}\n", bc.nbc3);
+    std::cout << std::format("Number of Boundary Condition 1: {}\n", bc.nbc1);    
+    std::cout << std::format("Number of Boundary Condition 2: {}\n", bc.nbc2);    
+    std::cout << std::format("Number of Boundary Condition 3: {}\n", bc.nbc3);
 
     // display coordinates
     mesh.displayCoordinates(mesh.np);

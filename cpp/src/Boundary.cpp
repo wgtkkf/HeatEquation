@@ -28,11 +28,11 @@ void BoundaryInput::read_NBC_Numbers(const std::filesystem::path& filepath) {
 
   // read file by keyword
   while (file >> key){
-    if(key=="NumberOfNaturalBoundaryCondition1"){
+    if(key=="NumberOfBoundaryCondition1"){
       file >> nbc1;
-    }else if (key == "NumberOfNaturalBoundaryCondition2"){
+    }else if (key == "NumberOfBoundaryCondition2"){
       file >> nbc2;
-    }else if (key == "NumberOfNaturalBoundaryCondition3"){
+    }else if (key == "NumberOfBoundaryCondition3"){
       file >> nbc3;
     }else{
       std::cout << std::format("Warning: unknown parameter '{}' ignored.\n", key);    

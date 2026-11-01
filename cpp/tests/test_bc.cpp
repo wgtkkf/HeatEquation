@@ -11,9 +11,9 @@ class BoundaryInputTest : public ::testing::Test{
 
     void SetUp() override {
       std::ofstream out(test_file);      
-      out << "NumberOfNaturalBoundaryCondition1 100\n";
-      out << "NumberOfNaturalBoundaryCondition2 50\n";
-      out << "NumberOfNaturalBoundaryCondition3 10\n";
+      out << "NumberOfBoundaryCondition1 100\n";
+      out << "NumberOfBoundaryCondition2 50\n";
+      out << "NumberOfBoundaryCondition3 10\n";
       out.close();
     }
 
