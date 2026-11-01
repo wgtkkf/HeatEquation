@@ -13,6 +13,7 @@ add_executable(bmt
     src/source.cpp
     src/Parameter.cpp
     src/Mesh.cpp
+    src/Boundary.cpp
 )
 
 #
