@@ -43,6 +43,7 @@ FetchContent_MakeAvailable(googletest)
 # Create the test executable by compiling Mesh.cpp with my test file
 add_executable(run_tests
     tests/test_mesh.cpp
+    tests/test_bc.cpp
 )
 
 # Link my test executable to the Google test libraries
