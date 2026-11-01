@@ -4,33 +4,43 @@
 #include <string>
 #include "../include/Mesh.hpp"
 
-TEST(MeshInputTest, ReadValidMeshParameters) {
-  // 1. Setup: create a temporary mock file with expected keys
-  std::string test_file = "mock_rectangle1.msh";
-  std::ofstream out(test_file);
-  out << "GeometryShape Square\n";
-  out << "Nodes 1\n";
-  out << "Elements 2\n";
-  out << "TimeStep 0.1\n";
-  out << "UnDefinedKeyword 999\n";
-  out.close();
+// 1. Define a Fixture class
+class MeshInputTest : public ::testing::Test{
+  protected:
+    std::string test_file = "mock_rectangle1.msh";
 
-  // 2. Execution: run moduls to be tested
+    void SetUp() override {
+      std::ofstream out(test_file);
+      out << "GeometryShape Square\n";
+      out << "Nodes 1\n";
+      out << "Elements 2\n";
+      out << "TimeStep 0.1\n";
+      out << "UnDefinedKeyword 999\n";
+      out.close();
+    }
+
+    // TearDown runs automatically aafter every TEST_F, even if it crashes
+    void TearDown() override {
+      std::remove(test_file.c_str());
+    }
+  };
+
+
+TEST_F(MeshInputTest, ReadValidMeshParameters) {
+  
+  // 1. Execution: run moduls to be tested
   MeshInput input("MockParameters");
   input.readMeshParameters(test_file);
 
-  // 3. Verification: assert the variables were populated correctly
+  // 2. Verification: assert the variables were populated correctly
   EXPECT_EQ(input.geometry, "Square");
   EXPECT_EQ(input.np, 1);
   EXPECT_EQ(input.ne, 2);
-  EXPECT_DOUBLE_EQ(input.dt, 0.1);
-  
-  // 4. clean up the file
-  std::remove(test_file.c_str());
+  EXPECT_DOUBLE_EQ(input.dt, 0.1);    
 }
 
 // Test Case 2: missing file, error handling
-TEST(MeshInputTest, ReadMissingFile){
+TEST_F(MeshInputTest, ReadMissingFile){
   MeshInput input("MockDummyParameters");
 
   // Set a default dummy values to prove they don't get overwritten by garbage data
