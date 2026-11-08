@@ -222,16 +222,16 @@ int main(void)
 		fscanf(fp6, "%d %d %d", &N, &M, &PG);
 		if(M==1)
 		{
-			n1 = nop[n][1];
-			n2 = nop[n][2];
+			n1 = nop[N][1];
+			n2 = nop[N][2];
 		}else if(M==2)
 		{
-			n1 = nop[n][0];
-			n2 = nop[n][2];
+			n1 = nop[N][0];
+			n2 = nop[N][2];
 		}else if(M==3)
 		{
-			n1 = nop[n][0];
-			n2 = nop[n][1];
+			n1 = nop[N][0];
+			n2 = nop[N][1];
 		}
 		nnbcn[i][0]=n1;
 		nnbcn[i][1]=n2;
