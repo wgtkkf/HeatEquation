@@ -41,11 +41,12 @@ int main(){
     mesh.readMeshNodes("../inputs/rectangle3.msh");
     // bc
     bc.read_NBC_Numbers("../inputs/rectangle-num.bc");
-
     bc.readFixedTemperature("../inputs/rectangle-t.bc");
 
     // resume from the natural boundary condition, line number 219.
+    bc.readNBC("../inputs/rectangle-n.bc");
 
+    //
     // display parameters    
     std::cout << std::format("--- Loaded Parameters ---\n");
     std::cout << std::format("Thermal conductivity: {}\n", param.thermal_conductivity);

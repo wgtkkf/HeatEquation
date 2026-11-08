@@ -35,6 +35,8 @@ void BoundaryInput::read_NBC_Numbers(const std::filesystem::path& filepath) {
       file >> nbc2;
     }else if (key == "NumberOfBoundaryCondition3"){
       file >> nbc3;
+    }else if (key == "NumberOfNaturalBoundaryCondition"){
+      file >> nbcn;
     }else{
       std::cout << std::format("Warning: unknown parameter '{}' ignored.\n", key);    
     }        
@@ -76,4 +78,22 @@ void BoundaryInput::displayTemperature() const{
     std::cout << std::format("Node [-] {}: t [K] = {}\n", 
       i + 1, temperature[i]);
   }
+}
+
+// read rectangle-n.bc
+void BoundaryInput::readNBC(const std::filesystem::path& filepath) {
+  std::ifstream file(filepath);
+
+  if (!file.is_open()){
+    std::cerr << std::format("Error: file cannot open {}\n", filepath.string());
+    return;
+  }
+
+  //
+  //for (size_t i=0; i<nbcn; i++){ // loop with number of nodes
+  //  std::cout << std::format("Node [-] {}: t [K] = {}\n", 
+      //i + 1, temperature[i]);
+  //}
+
+  //std::cout << std::format("Successfully loaded rectangle-n.bc: {} temperatures.\n", current_index);
 }
