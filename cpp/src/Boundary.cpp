@@ -4,10 +4,7 @@
 #include <format>
 #include <utility>
 #include <vector> // for vector
-<<<<<<< HEAD
-=======
 #include <algorithm> // for namespace parseFortranDouble
->>>>>>> dev_1
 
 // constructor
 BoundaryInput::BoundaryInput(std::string name)
