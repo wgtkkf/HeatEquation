@@ -35,15 +35,17 @@ int main(){
 
     // read parameters
     param.readParameters("../inputs/parameters.txt"); 
+    
     // mesh
     mesh.readMeshParameters("../inputs/rectangle1.msh"); 
     mesh.readMeshCoordinates("../inputs/rectangle2.msh");     
     mesh.readMeshNodes("../inputs/rectangle3.msh");
+    
     // bc
     bc.read_NBC_Numbers("../inputs/rectangle-num.bc");
     bc.readFixedTemperature("../inputs/rectangle-t.bc");
 
-    // resume from the natural boundary condition, line number 219.
+    // resume from the natural boundary condition, line number 223. nop is in mesh.hpp and .cpp
     bc.readNBC("../inputs/rectangle-n.bc");
 
     //
@@ -71,10 +73,10 @@ int main(){
     //mesh.displayNodes(mesh.ne);
     
     // display temperature
-    bc.displayTemperature();
+    //bc.displayTemperature();
     
     // display natural boundary conditions
-    bc.displayNBC();
+    //bc.displayNBC();
     
     return 0;
 }

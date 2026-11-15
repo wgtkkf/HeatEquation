@@ -8,6 +8,9 @@ project(ConductionFEM CXX)
 set(CMAKE_CXX_STANDARD 20) # C++20
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Find package: Eigen3
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+
 # 1. Bundle all core logic into a static library called 'FEMCore'
 add_library(FEMCore STATIC
     src/Parameter.cpp
@@ -17,6 +20,7 @@ add_library(FEMCore STATIC
 
 # Make sure the library knows where the header files are
 target_include_directories(FEMCore PUBLIC include)
+target_link_libraries(FEMCore PUBLIC Eigen3::Eigen)
 
 # 2. My main executable
 add_executable(bmt src/source.cpp)

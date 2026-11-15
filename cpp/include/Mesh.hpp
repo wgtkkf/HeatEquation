@@ -4,6 +4,7 @@
 #include <cstddef> // for std::size_t
 #include <string> // for char variable
 #include <vector> // for vector
+#include <Eigen/Dense> // for matrix operation
 
 class MeshInput{
 
@@ -15,8 +16,8 @@ class MeshInput{
     static constexpr std::size_t size1 = 2;    
 
     // input variables
-    double np = 0.0; /* nodes */
-    double ne = 0.0; /* elements */
+    int np = 0.0; /* nodes */
+    int ne = 0.0; /* elements */
     double dt = 0.0; /* time step */
 
     // mesh coordination
