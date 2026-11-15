@@ -47,45 +47,33 @@ int main(){
     bc.readNBC("../inputs/rectangle-n.bc");
 
     //
-    // display parameters    
-    std::cout << std::format("--- Loaded Parameters ---\n");
+    // display thermal properties
+    std::cout << std::format("--- Loaded Thermal Properties ---\n");
     std::cout << std::format("Thermal conductivity: {}\n", param.thermal_conductivity);
     std::cout << std::format("Density: {}\n", param.density);
     std::cout << std::format("Specific Heat: {}\n", param.specific_heat);
 
-    // display parameters    
+    // display mesh parameters
     std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
     std::cout << std::format("Number of Nodes: {}\n", mesh.np);    
     std::cout << std::format("Number of Elements: {}\n", mesh.ne);    
     std::cout << std::format("Time Step: {}\n", mesh.dt);    
     
-    // display parameters    
-    std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
-    std::cout << std::format("Number of Boundary Condition 1: {}\n", bc.nbc1);    
-    std::cout << std::format("Number of Boundary Condition 2: {}\n", bc.nbc2);    
-    std::cout << std::format("Number of Boundary Condition 3: {}\n", bc.nbc3);
-
-
-    // display coordinates
-    //mesh.displayCoordinates(mesh.np);
-    //mesh.displayNodes(mesh.ne);
-    
-    // display temperature
-    //bc.displayTemperature();
-    
-    // display parameters    
+    // display number of boundary & natural boundary conditions
     std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
     std::cout << std::format("Number of Boundary Condition 1: {}\n", bc.nbc1);    
     std::cout << std::format("Number of Boundary Condition 2: {}\n", bc.nbc2);    
     std::cout << std::format("Number of Boundary Condition 3: {}\n", bc.nbc3);
     std::cout << std::format("Number of Natural Boundary Condition: {}\n", bc.nbcn);
 
-    // display coordinates
+    // display mesh coordinates
     //mesh.displayCoordinates(mesh.np);
     //mesh.displayNodes(mesh.ne);
     
     // display temperature
-    //bc.displayTemperature();
+    bc.displayTemperature();
+    
+    // display natural boundary conditions
     bc.displayNBC();
     
     return 0;
