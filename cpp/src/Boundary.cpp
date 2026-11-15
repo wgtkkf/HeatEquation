@@ -44,7 +44,7 @@ void BoundaryInput::read_NBC_Numbers(const std::filesystem::path& filepath) {
   }  
 }
 
-// read rectangle-t.bc
+// read rectangle-t.bc & display
 void BoundaryInput::readFixedTemperature(const std::filesystem::path& filepath) {
   std::ifstream file(filepath);
 
@@ -81,7 +81,7 @@ void BoundaryInput::displayTemperature() const{
   }
 }
 
-// read rectangle-n.bc
+// read rectangle-n.bc and display
 namespace{
   double parseFortranDouble(std::string token) {
     std::ranges::replace(token, 'd', 'e');

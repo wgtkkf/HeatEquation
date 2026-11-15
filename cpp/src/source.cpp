@@ -18,15 +18,17 @@
 #include "../include/Parameter.hpp"
 #include "../include/Mesh.hpp"
 #include "../include/Boundary.hpp"
+#include "../include/Element.hpp"
 
 /*  */
 #include <format>   /* for format*/
 #include <iostream> /* for std cout*/
 
 int main(){
-    ParameterInput param("Parameter instance");     /* instance of a class */
-    MeshInput mesh("Mesh instance");                /* instance of a class */
+    ParameterInput param("Parameter instance");      /* instance of a class */
+    MeshInput mesh("Mesh instance");                 /* instance of a class */
     BoundaryInput bc("Boundary Condition instance"); /* instance of a class */
+    ElementInput elem("Element instance");           /* instance of a class */
 
     // display functions
     param.displayParameters();
@@ -44,9 +46,9 @@ int main(){
     // bc
     bc.read_NBC_Numbers("../inputs/rectangle-num.bc");
     bc.readFixedTemperature("../inputs/rectangle-t.bc");
+    bc.readNBC("../inputs/rectangle-n.bc"); // memo - line 220 to 245 were skipped. You can update them when applying for natural BC.
 
-    // resume from the natural boundary condition, line number 223. nop is in mesh.hpp and .cpp
-    bc.readNBC("../inputs/rectangle-n.bc");
+    // resume from line 255.
 
     //
     // display thermal properties

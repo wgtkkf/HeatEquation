@@ -11,6 +11,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Find package: Eigen3
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
+# If not found (e.g., on a clean CI runner), fetch it automatically
+if(NOT Eigen3_FOUND)
+    include(FetchContent)
+    FetchContent_Declare(
+        Eigen3
+        GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+        GIT_TAG 3.4.0
+        GIT_SHALLOW TRUE
+    )
+    FetchContent_MakeAvailable(Eigen3)
+endif()
+
 # 1. Bundle all core logic into a static library called 'FEMCore'
 add_library(FEMCore STATIC
     src/Parameter.cpp
