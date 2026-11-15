@@ -18,6 +18,11 @@ class BoundaryInput{
     std::vector<int> nnbc1;
     std::vector<double> temperature;
 
+    // natural boundary condition
+    std::vector<int> cN; // capical N
+    std::vector<double> cM; // capical M
+    std::vector<double> cPG; // capital PG
+
     // constructor
     BoundaryInput(std::string name);  
 
@@ -29,5 +34,6 @@ class BoundaryInput{
     // display
     void display_NBC_Numbers() const; // const guarantees this function only read data.
     void displayTemperature() const;
+    void displayNBC() const;
     
 };

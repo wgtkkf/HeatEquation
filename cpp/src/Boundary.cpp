@@ -4,6 +4,10 @@
 #include <format>
 #include <utility>
 #include <vector> // for vector
+<<<<<<< HEAD
+=======
+#include <algorithm> // for namespace parseFortranDouble
+>>>>>>> dev_1
 
 // constructor
 BoundaryInput::BoundaryInput(std::string name)
@@ -81,6 +85,15 @@ void BoundaryInput::displayTemperature() const{
 }
 
 // read rectangle-n.bc
+namespace{
+  double parseFortranDouble(std::string token) {
+    std::ranges::replace(token, 'd', 'e');
+    std::ranges::replace(token, 'D', 'e');
+    return std::stod(token);
+  }
+
+} // namespace
+
 void BoundaryInput::readNBC(const std::filesystem::path& filepath) {
   std::ifstream file(filepath);
 
@@ -89,11 +102,33 @@ void BoundaryInput::readNBC(const std::filesystem::path& filepath) {
     return;
   }
 
-  //
-  //for (size_t i=0; i<nbcn; i++){ // loop with number of nodes
-  //  std::cout << std::format("Node [-] {}: t [K] = {}\n", 
-      //i + 1, temperature[i]);
-  //}
+  // if you already know the total count
+  this->cN.reserve(nbcn);
+  this->cM.reserve(nbcn);
+  this->cPG.reserve(nbcn);
 
-  //std::cout << std::format("Successfully loaded rectangle-n.bc: {} temperatures.\n", current_index);
+  // temporal variables
+  int n;  
+  std::string m, pg;
+  int current_index = 0;
+
+  for (int i = 0; i < nbcn; ++i){
+    if (file >> n >> m >> pg){
+      cN.push_back(n);
+      cM.push_back(parseFortranDouble(m));
+      cPG.push_back(parseFortranDouble(pg));    
+    }
+    current_index++;
+  }
+
+  std::cout << std::format("Successfully loaded rectangle-n.bc: {}.\n", current_index);
+}
+
+void BoundaryInput::displayNBC() const{
+  std::cout << std::format("--- N / M / PG ---\n");
+
+  for (size_t i=0; i<nbcn; i++){ // loop with number of nodes
+    std::cout << std::format("N [-] {}: M [-] = {}: PG [-] = {}\n", 
+      this->cN[i], this->cM[i], this->cPG[i]);
+  }
 }

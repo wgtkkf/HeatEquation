@@ -1,4 +1,8 @@
 NumberOfBoundaryCondition1 54
 NumberOfBoundaryCondition2 1
 NumberOfBoundaryCondition3 1
+<<<<<<< HEAD
 NumberOfNaturalBoundaryCondition 0
+=======
+NumberOfNaturalBoundaryCondition 1
+>>>>>>> dev_1
