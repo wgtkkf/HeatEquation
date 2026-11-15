@@ -45,9 +45,25 @@ int main(){
     std::cout << std::format("Number of Elements: {}\n", mesh.ne);    
     std::cout << std::format("Time Step: {}\n", mesh.dt);    
 
+
     // display coordinates
     mesh.displayCoordinates(mesh.np);
     mesh.displayNodes(mesh.ne);
+    
+    // display parameters    
+    std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
+    std::cout << std::format("Number of Boundary Condition 1: {}\n", bc.nbc1);    
+    std::cout << std::format("Number of Boundary Condition 2: {}\n", bc.nbc2);    
+    std::cout << std::format("Number of Boundary Condition 3: {}\n", bc.nbc3);
+    std::cout << std::format("Number of Natural Boundary Condition: {}\n", bc.nbcn);
+
+    // display coordinates
+    //mesh.displayCoordinates(mesh.np);
+    //mesh.displayNodes(mesh.ne);
+    
+    // display temperature
+    //bc.displayTemperature();
+    bc.displayNBC();
     
     return 0;
 }
