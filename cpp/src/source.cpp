@@ -34,6 +34,7 @@ int main(){
     param.displayParameters();
     mesh.displayParameters();
     bc.display_NBC_Numbers();
+    elem.displayElements();
 
     // read parameters
     param.readParameters("../inputs/parameters.txt"); 
@@ -48,9 +49,6 @@ int main(){
     bc.readFixedTemperature("../inputs/rectangle-t.bc");
     bc.readNBC("../inputs/rectangle-n.bc"); // memo - line 220 to 245 were skipped. You can update them when applying for natural BC.
 
-    // resume from line 255.
-
-    //
     // display thermal properties
     std::cout << std::format("--- Loaded Thermal Properties ---\n");
     std::cout << std::format("Thermal conductivity: {}\n", param.thermal_conductivity);
@@ -79,6 +77,11 @@ int main(){
     
     // display natural boundary conditions
     //bc.displayNBC();
+
+    // Calculation of the element matrix
+    elem.elementMatrix(mesh); // pass mesh object
+
+    // resume from line 259.
     
     return 0;
 }

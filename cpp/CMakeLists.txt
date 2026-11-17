@@ -28,6 +28,7 @@ add_library(FEMCore STATIC
     src/Parameter.cpp
     src/Mesh.cpp
     src/Boundary.cpp
+    src/Element.cpp
 )
 
 # Make sure the library knows where the header files are
