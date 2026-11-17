@@ -2,7 +2,10 @@
 FROM gcc:13
 
 # Install CMake
-RUN apt-get update && apt-get install -y cmake
+RUN apt-get update && apt-get install -y \
+    cmake \
+    libeigen3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create a working directory
 WORKDIR /app
