@@ -13,6 +13,4 @@ class ElementInput{
     void displayElements() const;
     void elementMatrix(const MeshInput& mesh) const;
 
-  private:
-    int element = 0;
 };

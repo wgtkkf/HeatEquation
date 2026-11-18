@@ -21,7 +21,10 @@ void ElementInput::elementMatrix(const MeshInput& mesh) const{
   std::cout << std::format("--- Calculating Element Matrix ---\n");
 
   for (size_t element=0; element<mesh.ne; ++element){ // loop with number of nodes
+    for (size_t i=0; i<mesh.size0; ++i)
+    {
   //  std::cout << std::format("Node [-] {}: t [K] = {}\n", 
   //    i + 1, temperature[i]);
+    }
   }
 }
