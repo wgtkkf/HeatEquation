@@ -21,7 +21,9 @@ void ElementInput::displayElements() const{
 
 // Calculation of the element matrix
 void ElementInput::elementMatrix(const MeshInput& mesh) {
-  std::cout << std::format("--- Calculating Element Matrix ---\n");
+  std::cout << std::format("--- Element Matrix Calculation Started---\n");
+
+  // calling ne, size0, nop, x_coords, and y_coords from MeshInput class
 
   /* initialization */
   emm.setZero(mesh.ne, mesh.size0);
@@ -49,11 +51,17 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
     // Inside your element loop in Element.cpp:
     const double area2 = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
     const double area = 0.5 * area2;    
-    std::cout << std::format("elem = {}, area = {:.6f}\n", element, area);
+    // std::cout << std::format("elem = {}, area = {:.6f}\n", element, area);
 
     if (area <= 0.0) {
-      throw std::runtime_error(
-        std::format("Error: element {} has non-positive area ({:.6e})", element, area));
-      }
+      throw std::runtime_error(std::format("Error: element {} has non-positive area ({:.6e})", element, area));
+    }
+
+    //
+    const double a2 = 1/area2;
+    const double area3 = area/3;
+    
   }
+
+  std::cout << std::format("--- Element Matrix Calculation Completed ---\n");
 }
