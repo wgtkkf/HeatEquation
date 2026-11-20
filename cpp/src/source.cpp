@@ -68,15 +68,11 @@ int main(){
     std::cout << std::format("Number of Boundary Condition 3: {}\n", bc.nbc3);
     std::cout << std::format("Number of Natural Boundary Condition: {}\n", bc.nbcn);
 
-    // display mesh coordinates
-    //mesh.displayCoordinates(mesh.np);
-    //mesh.displayNodes(mesh.ne);
-    
-    // display temperature
-    //bc.displayTemperature();
-    
-    // display natural boundary conditions
-    //bc.displayNBC();
+    // display
+    //mesh.displayCoordinates(mesh.np); // display mesh coordinates
+    //mesh.displayNodes(mesh.ne);       // display mesh noedes    
+    //bc.displayTemperature();          // display temperature
+    //bc.displayNBC();                  // display natural boundary conditions
 
     // Calculation of the element matrix
     elem.elementMatrix(mesh); // pass mesh object
