@@ -7,10 +7,12 @@
 class ElementInput{
   public:       
     std::string config_name{""};    
-
     ElementInput(std::string name); // constructor
 
     void displayElements() const;
-    void elementMatrix(const MeshInput& mesh) const;
+    void elementMatrix(const MeshInput& mesh);
 
+    //
+    Eigen::MatrixXd emm;
+    std::vector<Eigen::MatrixXd> ass; // One 2D matrix per element    
 };

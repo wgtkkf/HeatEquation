@@ -94,13 +94,10 @@ void MeshInput::readMeshNodes(const std::filesystem::path& filepath) {
   // temporal parameters
   int element_id;
   int current_index = 0;
-  double a, b, c;
+  int a = 0, b = 0, c = 0;
 
   while (file >> element_id >> a >> b >> c){
-    nop[current_index][0] = a;
-    nop[current_index][1] = b;
-    nop[current_index][2] = c;
-        
+    nop[current_index] = {a - 1, b - 1, c - 1};          
     current_index++;
 
     if(current_index >= ne) break;

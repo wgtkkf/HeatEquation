@@ -25,7 +25,7 @@ class MeshInput{
     std::vector<double> y_coords;
 
     //  node information of each element
-    std::vector<std::array<double, size0>> nop;
+    std::vector<std::array<int, size0>> nop;
 
     std::string config_name{""};
 
