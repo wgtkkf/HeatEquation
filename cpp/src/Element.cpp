@@ -28,8 +28,12 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
   /* initialization */
   emm.setZero(mesh.ne, mesh.size0);
   ass.assign(mesh.ne, Eigen::MatrixXd::Zero(mesh.size0, mesh.size0));  
+  ElementMat dd = ElementMat::Zero();    
 
-  for (size_t element=0; element<mesh.ne; ++element){ // loop with number of nodes
+  for (size_t element=0; element<mesh.ne; ++element){ // loop with number of nodes    
+    // Constant 3x3 consistent mass pattern: [[2, 1, 1], [1, 2, 1], [1, 1, 2]]    
+    const ElementMat dd = ElementMat::Ones() + ElementMat::Identity();
+    
     /* calculation area of element */
     /* n1 -- number of 1st node */
 		/* n2 -- number of 2nd node */
@@ -60,7 +64,26 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
     //
     const double a2 = 1/area2;
     const double area3 = area/3;
-    
+
+    const std::array<double, MeshInput::size0> bb = {
+      (y2-y3)*a2,
+		  (y3-y1)*a2,
+      (y1-y2)*a2
+    };
+
+    const std::array<double, MeshInput::size0> cc = {
+      (x3-x2)*a2,
+		  (x1-x3)*a2,
+      (x2-x1)*a2
+    };
+
+    this->eb.resize(mesh.ne);
+    this->ec.resize(mesh.ne);
+
+    for (size_t i=0; i<MeshInput::size0; ++i){
+      eb[element][i] = bb[i];
+      ec[element][i] = cc[i];
+    }    
   }
 
   std::cout << std::format("--- Element Matrix Calculation Completed ---\n");
