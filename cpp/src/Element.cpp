@@ -28,7 +28,10 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
   /* initialization */
   emm.setZero(mesh.ne, mesh.size0);
   ass.assign(mesh.ne, Eigen::MatrixXd::Zero(mesh.size0, mesh.size0));  
-  ElementMat dd = ElementMat::Zero();    
+  ElementMat dd = ElementMat::Zero();
+
+  lmm.setZero(mesh.np); // not mesh.ne
+  ilmm.setZero(mesh.np); // not mesh.ne
 
   for (size_t element=0; element<mesh.ne; ++element){ // loop with number of nodes    
     // Constant 3x3 consistent mass pattern: [[2, 1, 1], [1, 2, 1], [1, 1, 2]]    
@@ -78,22 +81,30 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
     };
 
     this->eb.resize(mesh.ne);
-    this->ec.resize(mesh.ne);
+    this->ec.resize(mesh.ne);    
 
     for (size_t i=0; i<MeshInput::size0; ++i){
+      /* b & c */
       eb[element][i] = bb[i];
       ec[element][i] = cc[i];
 
       /* A matrix */      
       for (size_t j=0; j<MeshInput::size0; ++j){
-        ass[element](i, j) = area * (bb[i] * bb[j] + cc[i] * cc[j]);
-        std::cout << std::format("elem={} ({},{}): {:.12e}\n",
-                         element, i, j, ass[element](i, j));
+        ass[element](i, j) = area * (bb[i] * bb[j] + cc[i] * cc[j]);        
       }
+
+      /* lumped mass matrix */
+      emm(element, i) = area3;
+      const int n = mesh.nop[element][i]; /* node i of an element: the total coincides with nop (node) */
+      lmm[n] = lmm[n] + area3;
+      
     }        
 
-  }  
-
-
+    /* inverse of lmm */
+    for (size_t i=0; i<mesh.np; ++i){
+      ilmm[i] = 1.0/lmm[i];
+    }    
+  
+  }
   std::cout << std::format("--- Element Matrix Calculation Completed ---\n");
 }

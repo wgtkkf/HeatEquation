@@ -77,7 +77,7 @@ int main(){
     // Calculation of the element matrix
     elem.elementMatrix(mesh); // pass mesh object
 
-    // resume from line 302.
+    // resume from line 343.
     
     return 0;
 }

@@ -320,6 +320,7 @@ int main(void)
             for(j=0;j<size0;j++)
             {
                 ass[elem][i][j] = area*(b[i]*b[j]+c[i]*c[j]);
+				/* printf("elem=%d (%d,%d): %.12e\n", elem, i, j, ass[elem][i][j]); */
             }
         }
         
