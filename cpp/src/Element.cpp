@@ -66,15 +66,15 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
     const double area3 = area/3;
 
     const std::array<double, MeshInput::size0> bb = {
-      (y2-y3)*a2,
-		  (y3-y1)*a2,
-      (y1-y2)*a2
+      (y2-y3) * a2,
+		  (y3-y1) * a2,
+      (y1-y2) * a2
     };
 
     const std::array<double, MeshInput::size0> cc = {
-      (x3-x2)*a2,
-		  (x1-x3)*a2,
-      (x2-x1)*a2
+      (x3-x2) * a2,
+		  (x1-x3) * a2,
+      (x2-x1) * a2
     };
 
     this->eb.resize(mesh.ne);
@@ -83,8 +83,17 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
     for (size_t i=0; i<MeshInput::size0; ++i){
       eb[element][i] = bb[i];
       ec[element][i] = cc[i];
-    }    
-  }
+
+      /* A matrix */      
+      for (size_t j=0; j<MeshInput::size0; ++j){
+        ass[element](i, j) = area * (bb[i] * bb[j] + cc[i] * cc[j]);
+        std::cout << std::format("elem={} ({},{}): {:.12e}\n",
+                         element, i, j, ass[element](i, j));
+      }
+    }        
+
+  }  
+
 
   std::cout << std::format("--- Element Matrix Calculation Completed ---\n");
 }
