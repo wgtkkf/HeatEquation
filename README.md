@@ -26,7 +26,7 @@ cpp/
 │   ├── Mesh.cpp
 │   ├── Initial.cpp
 │   ├── Boundary.cpp     # Boundary conditions: read and apply
-│   ├── Element.cpp       # Element stiffness matrices
+│   ├── Element.cpp      # Element stiffness matrices
 │   ├── Solver.cpp       # Solve
 │   └── Outputs.cpp      # ParaView visualization
 ├── tests/               #
