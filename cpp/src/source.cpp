@@ -19,6 +19,7 @@
 #include "../include/Mesh.hpp"
 #include "../include/Boundary.hpp"
 #include "../include/Element.hpp"
+#include "../include/Output.hpp"
 
 /*  */
 #include <format>   /* for format*/
@@ -29,6 +30,7 @@ int main(){
     MeshInput mesh("Mesh instance");                 /* instance of a class */
     BoundaryInput bc("Boundary Condition instance"); /* instance of a class */
     ElementInput elem("Element instance");           /* instance of a class */
+    OutputResult out("Output instance");             /* instance of a class */
 
     // display functions
     param.displayParameters();
