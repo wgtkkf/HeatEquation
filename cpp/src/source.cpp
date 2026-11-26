@@ -26,11 +26,11 @@
 #include <iostream> /* for std cout*/
 
 int main(){
-    ParameterInput param("Parameter instance");      /* instance of a class */
-    MeshInput mesh("Mesh instance");                 /* instance of a class */
-    BoundaryInput bc("Boundary Condition instance"); /* instance of a class */
-    ElementInput elem("Element instance");           /* instance of a class */
-    OutputResult out("Output instance");             /* instance of a class */
+    ParameterInput param("Parameter instance");         /* instance of a class */
+    MeshInput mesh("Mesh instance");                    /* instance of a class */
+    BoundaryInput bc("Boundary Condition instance");    /* instance of a class */
+    ElementInput elem("Element instance");              /* instance of a class */
+    OutputResult out("Output instahce", "vtk", "step"); /* instance of a class */
 
     // display functions
     param.displayParameters();
@@ -59,9 +59,9 @@ int main(){
 
     // display mesh parameters
     std::cout << std::format("--- Loaded Mesh Parameters ---\n");    
-    std::cout << std::format("Number of Nodes: {}\n", mesh.np);    
-    std::cout << std::format("Number of Elements: {}\n", mesh.ne);    
-    std::cout << std::format("Time Step: {}\n", mesh.dt);    
+    std::cout << std::format("Number of Nodes: {}\n", mesh.getNumNodes());    
+    std::cout << std::format("Number of Elements: {}\n", mesh.getNumElements());    
+    std::cout << std::format("Time Step: {}\n", mesh.getDt());    
     
     // display number of boundary & natural boundary conditions
     std::cout << std::format("--- Loaded Mesh Parameters ---\n");    

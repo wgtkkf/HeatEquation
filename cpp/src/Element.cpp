@@ -24,14 +24,20 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
   // calling ne, size0, nop, x_coords, and y_coords from MeshInput class
 
   /* initialization */
-  emm.setZero(mesh.ne, mesh.size0);
-  ass.assign(mesh.ne, Eigen::MatrixXd::Zero(mesh.size0, mesh.size0));  
+  const int np = mesh.getNumNodes();
+  const int ne = mesh.getNumElements() ;
+
+  const auto& x = mesh.getXCoords();
+  const auto& y = mesh.getYCoords();
+
+  emm.setZero(ne, mesh.size0);
+  ass.assign(ne, Eigen::MatrixXd::Zero(mesh.size0, mesh.size0));  
   ElementMat dd = ElementMat::Zero();
 
-  lmm.setZero(mesh.np); // not mesh.ne
-  ilmm.setZero(mesh.np); // not mesh.ne
+  lmm.setZero(np); // not ne
+  ilmm.setZero(np); // not ne
 
-  for (size_t element=0; element<mesh.ne; ++element){ // loop with number of nodes    
+  for (size_t element=0; element<ne; ++element){ // loop with number of nodes    
     // Constant 3x3 consistent mass pattern: [[2, 1, 1], [1, 2, 1], [1, 1, 2]]    
     const ElementMat dd = ElementMat::Ones() + ElementMat::Identity();
     
@@ -46,12 +52,15 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
     // const int n2 = mesh.nop[elem][1];
     // const int n3 = mesh.nop[elem][2];
 
-    const double x1 = mesh.x_coords.at(n1);
-    const double y1 = mesh.y_coords.at(n1);
-    const double x2 = mesh.x_coords.at(n2);
-    const double y2 = mesh.y_coords.at(n2);
-    const double x3 = mesh.x_coords.at(n3);
-    const double y3 = mesh.y_coords.at(n3);
+    const auto& x = mesh.getXCoords();
+    const auto& y = mesh.getYCoords();
+
+    const double x1 = x.at(n1);
+    const double y1 = y.at(n1);
+    const double x2 = x.at(n2);
+    const double y2 = y.at(n2);
+    const double x3 = x.at(n3);
+    const double y3 = y.at(n3);
 
     // Inside your element loop in Element.cpp:
     const double area2 = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
@@ -78,8 +87,8 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
       (x2-x1) * a2
     };
 
-    this->eb.resize(mesh.ne);
-    this->ec.resize(mesh.ne);    
+    this->eb.resize(ne);
+    this->ec.resize(ne);    
 
     for (size_t i=0; i<MeshInput::size0; ++i){
       /* b & c */
@@ -99,7 +108,7 @@ void ElementInput::elementMatrix(const MeshInput& mesh) {
     }        
 
     /* inverse of lmm */
-    for (size_t i=0; i<mesh.np; ++i){
+    for (size_t i=0; i<np; ++i){
       ilmm[i] = 1.0/lmm[i];
     }    
   

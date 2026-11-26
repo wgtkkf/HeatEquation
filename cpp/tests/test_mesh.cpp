@@ -34,20 +34,17 @@ TEST_F(MeshInputTest, ReadValidMeshParameters) {
 
   // 2. Verification: assert the variables were populated correctly
   EXPECT_EQ(input.geometry, "Square");
-  EXPECT_EQ(input.np, 1);
-  EXPECT_EQ(input.ne, 2);
-  EXPECT_DOUBLE_EQ(input.dt, 0.1);    
+  EXPECT_EQ(input.getNumNodes(), 1);
+  EXPECT_EQ(input.getNumElements(), 2);
+  EXPECT_DOUBLE_EQ(input.getDt(), 0.1);    
 }
 
 // Test Case 2: missing file, error handling
 TEST_F(MeshInputTest, ReadMissingFile){
   MeshInput input("MockDummyParameters");
 
-  // Set a default dummy values to prove they don't get overwritten by garbage data
-  input.np = 0;
-
   // read a file that does not exist
   input.readMeshParameters("non_existent_file.msh")  ;
 
-  EXPECT_EQ(input.np, 0);
+  EXPECT_EQ(input.getNumNodes(), 0);
 }
