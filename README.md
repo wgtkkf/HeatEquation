@@ -8,32 +8,38 @@ Two-dimensional finite element modeling of heat equasion.
 ## C++ version
 ```text
 cpp/
-├── CMakeLists.txt       # 
+├── clean_build.sh       # 
 ├── Dockerfile           # 
+├── CMakeLists.txt       # 
 ├── include/             # .hpp files
 │   ├── Timer.hpp
 │   ├── Parameter.hpp
 │   ├── Mesh.hpp
-│   ├── Initial.hpp
 │   ├── Boundary.hpp
 │   ├── Element.hpp
 │   ├── Solver.hpp      
-│   └── Outputs.hpp      
+│   └── Output.hpp      
 ├── src/                 # .cpp files
-│   ├── source.cpp       # entry point
+│   ├── source.cpp       # entry point, loop
 │   ├── Timer.cpp
 │   ├── Parameter.cpp
 │   ├── Mesh.cpp
-│   ├── Initial.cpp
 │   ├── Boundary.cpp     # Boundary conditions: read and apply
 │   ├── Element.cpp      # Element stiffness matrices
 │   ├── Solver.cpp       # Solve
-│   └── Outputs.cpp      # ParaView visualization
+│   └── Output.cpp       # ParaView visualization
 ├── tests/               #
 │   ├── test1.cpp        #
 │   └── test2.cpp
 ├── inputs/              # external input files
 │   ├── parameters.txt   # 
+│   ├── rectangle1.msh   #
+│   ├── rectangle2.msh   #
+│   ├── rectangle3.msh   #
+│   ├── rectangle-n.bc   #
+│   ├── rectangle-num.bc #
+│   ├── rectangle-t.bc   #
+│   └── Outputs.hpp      
 └── build/               #
 ```
 
