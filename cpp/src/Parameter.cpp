@@ -36,6 +36,12 @@ void ParameterInput::readParameters(const std::filesystem::path& filepath) {
       file >> specific_heat;
     }else{
       std::cout << std::format("Warning: unknown parameter '{}' ignored.\n", key);    
-    }        
+    }
+  }
+
+  if (density > 0.0 && specific_heat > 0.0){
+    c1 = thermal_conductivity / (density * specific_heat);
+  }else{
+    std::cerr << "Error: Density and SpecificHeat must be positive numbers to compute c1.\n";
   }
 }

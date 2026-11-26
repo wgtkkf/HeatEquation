@@ -12,6 +12,8 @@ class ParameterInput{
     double density = 0.0;
     double specific_heat = 0.0;
 
+    [[nodiscard]] double getC1() const noexcept { return c1; }
+
     // constructor
     ParameterInput(std::string name);  
 
@@ -20,4 +22,7 @@ class ParameterInput{
 
     // read parameters
     void readParameters(const std::filesystem::path& filepath);
+
+  private:
+    double c1{0.0};
 };
