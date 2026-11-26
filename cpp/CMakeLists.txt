@@ -30,6 +30,7 @@ add_library(FEMCore STATIC
     src/Boundary.cpp
     src/Element.cpp
     src/Output.cpp
+    src/Solver.cpp
 )
 
 # Make sure the library knows where the header files are

@@ -20,6 +20,7 @@
 #include "../include/Boundary.hpp"
 #include "../include/Element.hpp"
 #include "../include/Output.hpp"
+#include "../include/Solver.hpp"
 
 /*  */
 #include <format>   /* for format*/
@@ -31,12 +32,15 @@ int main(){
     BoundaryInput bc("Boundary Condition instance");    /* instance of a class */
     ElementInput elem("Element instance");              /* instance of a class */
     OutputResult out("Output instahce", "vtk", "step"); /* instance of a class */
+    Solver solver("Solver instance"); /* instance of a class */
 
     // display functions
     param.displayParameters();
     mesh.displayParameters();
     bc.display_NBC_Numbers();
     elem.displayElements();
+    out.displayOutput();
+    solver.displaySolver();        
 
     // read parameters
     param.readParameters("../inputs/parameters.txt"); 
@@ -79,7 +83,20 @@ int main(){
     // Calculation of the element matrix
     elem.elementMatrix(mesh); // pass mesh object
 
-    // resume from line 343.
+    // Remaining: 346-396
+    // solve & output
+    solver.initialize(mesh.getNumNodes(), 0.0);
+    out.writeVtk(0, mesh, solver.getTemperature());
+
+    constexpr int max_steps{10};
+    constexpr int output_interval{1};    
+
+    for (int step = 1; step <= max_steps; ++step) {
+        solver.advanceStep(mesh);
+        if (step % output_interval == 0) {
+        out.writeVtk(step, mesh, solver.getTemperature());
+        }
+    }    
     
     return 0;
 }

@@ -1,9 +1,7 @@
 #pragma once
-#include <string>
 #include <filesystem> // for filesystem
-#include <cstddef>    // for std::size_t
-#include <utility>
-#include <format>
+#include <span>
+#include <string>
 
 class MeshInput;
 
@@ -14,12 +12,13 @@ class OutputResult{
       std::filesystem::path output_dir,
       std::string file_prefix);        
 
-    void display() const;
-    void writeVtk(int stepnum, const MeshInput& mesh) const;
+    void displayOutput() const;
+    void writeVtk(int stepnum,
+                  const MeshInput& mesh,
+                  std::span<const double> temperature) const;
 
 private:
     std::string config_name;
     std::filesystem::path dir_;
     std::string prefix_;
-
 };
