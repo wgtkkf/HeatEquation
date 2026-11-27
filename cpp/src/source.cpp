@@ -11,8 +11,8 @@
 /* 5. rectangle-t.bc                                                        */
 /* 6. rectangle-num.bc                                                      */
 /* 7. rectangle-n.bc                                                        */
-/* Updated: September 20, 2026                                              */
-/* Updated: September 27, 2026                                              */
+/* Started: September 20, 2026                                              */
+/* Updated: November 26, 2026                                               */
 /* ************************************************************************ */
 /* For functions */
 #include "../include/Parameter.hpp"
@@ -26,12 +26,15 @@
 #include <format>   /* for format*/
 #include <iostream> /* for std cout*/
 
-int main(){
+int main(){    
+    const std::filesystem::path output_dir = std::filesystem::path(PROJECT_ROOT_DIR) / "results";
+    
+    //
     ParameterInput param("Parameter instance");         /* instance of a class */
     MeshInput mesh("Mesh instance");                    /* instance of a class */
     BoundaryInput bc("Boundary Condition instance");    /* instance of a class */
     ElementInput elem("Element instance");              /* instance of a class */
-    OutputResult out("Output instahce", "vtk", "step"); /* instance of a class */
+    OutputResult out("Output instance", output_dir, "step"); /* instance of a class */
     Solver solver("Solver instance"); /* instance of a class */
 
     // display functions
@@ -83,7 +86,6 @@ int main(){
     // Calculation of the element matrix
     elem.elementMatrix(mesh); // pass mesh object
 
-    // Remaining: 346-396
     // solve & output
     solver.initialize(mesh.getNumNodes(), 0.0);
     out.writeVtk(0, mesh, solver.getTemperature());
@@ -91,6 +93,7 @@ int main(){
     constexpr int max_steps{10};
     constexpr int output_interval{1};    
 
+    // Remaining: 346-396
     for (int step = 1; step <= max_steps; ++step) {
         solver.advanceStep(mesh);
         if (step % output_interval == 0) {

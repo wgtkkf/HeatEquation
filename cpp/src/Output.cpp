@@ -83,24 +83,26 @@ void OutputResult::writeVtk(int stepnum,
 
     // element informat
     const auto total_cell_entries = static_cast<std::size_t>(ne) * (MeshInput::size0 + 1);
-    fp << std::format("\nCELLS {} {}\n", ne, total_cell_entries);
+    fp << std::format("CELLS {} {}\n", ne, total_cell_entries);
 
     // this line may need double check
     for (const auto& elem : conn) {
       fp << std::format("{} {} {} {}\n", MeshInput::size0, elem[0], elem[1], elem[2]);
     }
 
-    fp << std::format("\nCELL_TYPES {}\n", ne);
+    fp << std::format("CELL_TYPES {}\n", ne);
     for (int i = 0; i < ne; ++i) {
       fp << std::format("{}\n", kVtkTriangle);
     }
 
     /* temperature data */
-    fp << std::format("\nPOINT_DATA {}\n", np)
+    fp << std::format("POINT_DATA {}\n", np)
        << "SCALARS temperature double 1\n"
        << "LOOKUP_TABLE default\n";
 
     for (const double temp : temperature) {
         fp << std::format("{:.6f}\n", temp);
     }
+
+    fp << std::format("CELL_DATA {}\n", ne);    
 }

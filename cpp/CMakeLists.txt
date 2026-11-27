@@ -39,6 +39,7 @@ target_link_libraries(FEMCore PUBLIC Eigen3::Eigen)
 
 # 2. My main executable
 add_executable(bmt src/source.cpp)
+target_compile_definitions(bmt PRIVATE PROJECT_ROOT_DIR="${CMAKE_SOURCE_DIR}")
 
 # Link the core library to my executable
 target_link_libraries(bmt PRIVATE FEMCore)
